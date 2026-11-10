@@ -52,14 +52,6 @@ OUT_OF_SCOPE = {
         "ERP software license", "SAP implementation", "Microsoft Office licenses", "website development",
         "CAD software seats", "Oracle license fees", "software implementation consulting", "patent costs",
         "customer list", "trademark registration", "Salesforce configuration", "MES software module"]),
-    "Buildings & Improvements": (["Buildings", "Building Improvements", "Leasehold Improvements"], [
-        "roof replacement", "office renovation", "parking lot paving", "HVAC rooftop unit replacement",
-        "leasehold improvements suite 200", "building addition", "new flooring", "interior build-out",
-        "loading dock addition", "restroom remodel", "fire sprinkler system", "building lighting retrofit",
-        "fencing", "landscaping"]),
-    "Land": (["Land", "Land Improvements"], [
-        "land 12 acres", "land purchase", "site grading", "storm drainage", "land parcel 4",
-        "retention pond", "land acquisition costs"]),
     "Construction in Progress": (["Construction in Progress", "CIP", "Assets Under Construction"], [
         "CIP line 4 expansion", "construction in progress plant 2", "project 2207 progress billing",
         "CIP new warehouse", "capital project in process", "AUC press line"]),

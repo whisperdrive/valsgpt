@@ -35,6 +35,8 @@ def write(path, rows, fields):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--synthetic", default=str(HERE / "data" / "synthetic.csv"))
+    ap.add_argument("--inventories", default=str(HERE / "data" / "sector_inventories.csv"),
+                    help="output of fetch_sector_inventories.py; labels come from the source")
     ap.add_argument("--real", nargs="+", required=True, help="output files of jev_label.py")
     ap.add_argument("--holdout", type=int, default=500)
     ap.add_argument("--min-confidence", type=float, default=0.9)
@@ -52,6 +54,8 @@ def main():
         (confident if scope_ok and class_ok else queue).append(row)
 
     train = [{**row, "source": "synthetic"} for row in read(args.synthetic)]
+    if Path(args.inventories).exists():
+        train += read(args.inventories)
     for row in confident:
         train.append({"state": row["state"], **{k: row[f"jev_{k}"] for k in LABELS},
                       "split": "train", "source": "real_jev_labelled"})

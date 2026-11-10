@@ -12,12 +12,14 @@ valuation.
 | `generate_synthetic.py` | Writes labelled, register-style rows from the taxonomy. |
 | `jev_label.py` | Labels rows with Jev, or audits synthetic rows against it. |
 | `fetch_indiana.py` | Samples real rows from Indiana's public state asset register. |
+| `fetch_sector_inventories.py` | Builds labelled rows from FAA aircraft, EIA power plant and FTA transit inventories. |
 | `build_training_set.py` | Merges synthetic and Jev-labelled real rows; writes the review files. |
 | `data/synthetic.csv` | Generated rows, with train / validation / test split. |
 | `data/jev_audit.csv` | Jev's blind labels for a sample of the synthetic set. |
 | `data/indiana_sample.csv` | 3,093 real register rows, unlabelled, with the state's own categories. |
 | `data/indiana_jev_labelled.csv` | The same rows with Jev's labels and confidence. |
-| `data/training_set.csv` | Synthetic rows plus real rows Jev labelled at 0.9 confidence or above. |
+| `data/sector_inventories.csv` | 5,277 rows built from real aircraft, generator and transit records; labels come from the source's own type field. |
+| `data/training_set.csv` | Synthetic rows, sector inventory rows, and Indiana rows Jev labelled at 0.9 confidence or above. The `source` column says which. |
 | `data/real_test_to_review.csv` | 500 real rows held out of training. Jev's label is a suggestion; fill the `reviewed_*` columns by hand to make this the test set. |
 | `data/review_queue.csv` | Real rows Jev was unsure about, for hand labelling. |
 
@@ -41,8 +43,9 @@ major_category: Plastics & Rubber Processing
 asset_class:    Injection Molding Machines
 ```
 
-Rows that are not machinery and equipment (software, buildings, land,
-construction in progress, expensed items) are `in_scope = no`. Rows too vague
+Rows that are not classifiable tangible assets (software, intangibles,
+construction in progress, expensed items) are `in_scope = no`. Land, buildings
+and infrastructure are classes in the taxonomy. Rows too vague
 to classify are `in_scope = unclear`. Both carry `not_applicable` in the three
 taxonomy columns, so the model learns to reject or escalate them.
 
@@ -65,8 +68,13 @@ costs about 6,600 input tokens, because all classes are sent as options.
   them says little about accuracy on real registers; a hand-labelled set of
   real rows is still needed for testing.
 - Model numbers and capacities are random, so they carry no signal.
-- The only real data so far is one US state government register (Indiana
-  "Assets Data", licence not specified on the portal). It is heavy on office,
-  IT, vehicle and public safety assets and has almost no industrial plant.
+- The only real accounting register so far is one US state government register
+  (Indiana "Assets Data", licence not specified on the portal). It is heavy on
+  office, IT, vehicle and public safety assets and has almost no industrial plant.
+- The sector inventory rows use real makes, models, sizes and plant names, but
+  the description wording is assembled by `fetch_sector_inventories.py`, so it
+  is cleaner and more regular than a real register.
+- Oil and gas, mining, agriculture, airports, toll roads, transmission and
+  distribution, and real estate have synthetic rows only.
 - Real rows in `training_set.csv` carry Jev's labels, unchecked by a person.
 - `real_test_to_review.csv` is not a test set until its rows are reviewed.

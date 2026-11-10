@@ -368,15 +368,30 @@ Power & Utilities:
     gl: [Plant in Service, Generation Plant, Machinery & Equipment]
     cost: [100000, 20000000]
     classes:
-      Gas & Steam Turbine Generators:
-        items: [gas turbine generator, steam turbine, combined cycle unit, heat recovery steam generator, turbine generator set]
+      Combustion Turbine & Combined Cycle Plants:
+        items: [gas turbine generator, combined cycle unit, heat recovery steam generator, simple cycle peaker, combustion turbine]
         makes: [GE, Siemens, Mitsubishi, Solar Turbines, Alstom]
+      Steam & Nuclear Generating Units:
+        items: [steam turbine generator, coal fired unit, utility boiler, nuclear reactor unit, cooling tower, flue gas scrubber]
+        makes: [GE, Westinghouse, Babcock & Wilcox, Siemens, Alstom]
       Reciprocating Engine Power Plants:
-        items: [cogeneration engine, landfill gas engine generator, CHP unit, prime power generator plant]
+        items: [cogeneration engine, landfill gas engine generator, CHP unit, prime power generator plant, diesel generating unit]
         makes: [Jenbacher, Caterpillar, Wartsila, Cummins, Waukesha]
-      Solar & Wind Generation Equipment:
-        items: [solar PV array, inverter, wind turbine, solar tracker system, battery energy storage system]
-        makes: [First Solar, SMA, Vestas, GE, Tesla, Nextracker, SunPower]
+      Hydroelectric Generating Units:
+        items: [hydro turbine generator, hydroelectric unit, pumped storage unit, penstock, spillway gate]
+        makes: [Voith, Andritz, GE, Allis-Chalmers]
+      Solar Generation Equipment:
+        items: [solar PV array, solar inverter, single-axis tracker system, solar modules, solar thermal collector field]
+        makes: [First Solar, SMA, Nextracker, SunPower, Canadian Solar, Jinko]
+      Wind Turbines:
+        items: [wind turbine, wind turbine generator, wind farm turbines, turbine tower and blades]
+        makes: [Vestas, GE, Siemens Gamesa, Nordex, Suzlon]
+      Battery Energy Storage Systems:
+        items: [battery energy storage system, lithium-ion battery container, BESS inverter, flywheel storage]
+        makes: [Tesla, Fluence, BYD, LG, Wartsila]
+      Biomass, Geothermal & Other Renewable Units:
+        items: [biomass boiler unit, geothermal turbine, wood waste generating unit, fuel cell power plant, municipal solid waste unit]
+        makes: [Ormat, Bloom Energy, FuelCell Energy]
   Transmission, Distribution & Water:
     gl: [Plant in Service, Distribution Plant, Utility Plant]
     cost: [20000, 5000000]
@@ -427,9 +442,12 @@ Transportation & Logistics:
     gl: [Aircraft, Flight Equipment, Transportation Equipment]
     cost: [200000, 60000000]
     classes:
-      Aircraft & Helicopters:
-        items: [business jet, turboprop aircraft, helicopter, regional jet, piston aircraft, narrowbody aircraft]
-        makes: [Cessna, Gulfstream, Bombardier, Beechcraft, Bell, Airbus, Boeing, Embraer]
+      Fixed-Wing Aircraft:
+        items: [business jet, turboprop aircraft, regional jet, piston aircraft, narrowbody aircraft, single engine airplane]
+        makes: [Cessna, Gulfstream, Bombardier, Beechcraft, Piper, Airbus, Boeing, Embraer]
+      Helicopters & Rotorcraft:
+        items: [helicopter, turbine helicopter, rotorcraft, medevac helicopter]
+        makes: [Bell, Airbus Helicopters, Sikorsky, Robinson, Leonardo]
       Aircraft Engines & Rotables:
         items: [turbofan engine, spare engine, auxiliary power unit, landing gear set, propeller, rotable spares]
         makes: [Pratt & Whitney, GE, Rolls-Royce, CFM, Honeywell]
@@ -459,6 +477,9 @@ Transportation & Logistics:
       Buses & Transit Vehicles:
         items: [transit bus, motor coach, school bus, shuttle bus, paratransit van]
         makes: [New Flyer, Gillig, Blue Bird, Thomas Built, MCI, Prevost]
+      Rail Transit Vehicles:
+        items: [heavy rail passenger car, light rail vehicle, commuter rail coach, streetcar, subway car, commuter rail locomotive]
+        makes: [Siemens, Kawasaki, Bombardier, Alstom, Stadler, Kinkisharyo]
       Fuel Tankers & Specialty Trucks:
         items: [fuel tanker truck, vacuum truck, refuse truck, crane truck, bucket truck, tank trailer]
         makes: [Heil, McNeilus, Vactor, Altec, Polar, Terex]
@@ -618,3 +639,63 @@ Government & Public Safety:
       Recreational & Educational Equipment:
         items: [playground equipment, exercise equipment, boat, outboard motor, canoe, classroom equipment, musical instrument, museum exhibit]
         makes: [Mercury, Yamaha, GameTime, Landscape Structures, Tracker]
+
+Transport Infrastructure:
+  Airports:
+    gl: [Airfield, Infrastructure, Terminal Equipment, Buildings & Improvements]
+    cost: [50000, 80000000]
+    classes:
+      Airfield Pavements & Lighting:
+        items: [runway, taxiway, apron pavement, airfield lighting system, runway rehabilitation, navigational aids]
+        makes: []
+      Airport Terminal Systems:
+        items: [passenger boarding bridge, baggage handling system, baggage carousel, security screening equipment, flight information display system]
+        makes: [JBT, Thyssenkrupp, Vanderlande, Daifuku, Smiths Detection]
+  Roads, Bridges & Tolling:
+    gl: [Infrastructure, Roadway, Toll Equipment]
+    cost: [50000, 200000000]
+    classes:
+      Roadways & Pavements:
+        items: [roadway pavement, highway lanes, interchange, road resurfacing, guardrail, highway lighting]
+        makes: []
+      Bridges & Tunnels:
+        items: [bridge, overpass, tunnel, bridge deck replacement, viaduct, culvert]
+        makes: []
+      Toll Collection & Traffic Management Systems:
+        items: [toll gantry, electronic toll collection system, toll plaza equipment, toll booth, license plate camera system, traffic management system]
+        makes: [Kapsch, TransCore, Conduent, Neology]
+  Rail & Transit Infrastructure:
+    gl: [Infrastructure, Track & Guideway, Buildings & Improvements]
+    cost: [50000, 200000000]
+    classes:
+      Track, Guideway & Signals:
+        items: [track, rail and ties, overhead catenary system, signal system, traction power substation, grade crossing]
+        makes: []
+      Transit Stations & Maintenance Facilities:
+        items: [passenger station, bus maintenance garage, rail yard and shop, park and ride lot, transit center, bus shelter]
+        makes: []
+
+Real Estate:
+  Land & Site:
+    gl: [Land, Land Improvements]
+    cost: [20000, 20000000]
+    classes:
+      Land:
+        items: [land, land parcel, acreage, land acquisition, right of way]
+        makes: []
+      Site Improvements:
+        items: [parking lot paving, site grading, storm drainage, fencing, landscaping, retention pond, site lighting]
+        makes: []
+  Buildings:
+    gl: [Buildings, Building Improvements, Leasehold Improvements]
+    cost: [20000, 60000000]
+    classes:
+      Buildings & Structures:
+        items: [office building, warehouse building, building addition, manufacturing building, storage building, parking structure]
+        makes: []
+      Building Systems & Improvements:
+        items: [roof replacement, HVAC rooftop unit replacement, elevator, fire sprinkler system, building lighting retrofit, restroom remodel, new flooring]
+        makes: [Trane, Carrier, Otis, Schindler, Lennox]
+      Leasehold & Tenant Improvements:
+        items: [leasehold improvements, tenant build-out, office renovation, interior build-out, tenant improvement allowance]
+        makes: []

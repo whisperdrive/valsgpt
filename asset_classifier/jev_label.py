@@ -30,9 +30,9 @@ from generate_synthetic import NA, load_taxonomy
 
 URL = "https://api.typesafe.ai/v1/systemone"
 SCOPE_OPTIONS = {
-    "yes": "A specific item of tangible machinery, equipment, vehicles, furniture or fixtures.",
-    "no": "Not machinery and equipment: software, intangibles, land, buildings and building "
-          "improvements, construction in progress, services, repairs, or consumables.",
+    "yes": "An identifiable tangible asset: machinery, equipment, vehicles, furniture, land, buildings or infrastructure.",
+    "no": "Not a classifiable tangible asset: software, intangibles, construction in progress, "
+          "services, repairs, fees, or consumables.",
     "unclear": "Too vague to tell what the asset is, such as 'misc equipment' or 'additions'.",
 }
 
@@ -45,12 +45,12 @@ def build_questions(classes):
     return {
         "in_scope": {
             "type": "choice",
-            "instructions": "Is this fixed asset register entry an identifiable item of machinery and equipment?",
+            "instructions": "Is this fixed asset register entry an identifiable tangible asset?",
             "criteria": SCOPE_OPTIONS,
         },
         "asset_class": {
             "type": "choice",
-            "instructions": "Which machinery and equipment asset class does this fixed asset register entry belong to?",
+            "instructions": "Which asset class does this fixed asset register entry belong to?",
             "criteria": options,
         },
     }

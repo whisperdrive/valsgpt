@@ -1,27 +1,381 @@
-# Machinery & equipment taxonomy: sector -> major category -> asset class.
+# Asset taxonomy, version 2: sector -> asset classification -> asset class.
 #
-# DRAFT. The structure follows the way ASA's Machinery & Technical Specialties
-# material organises assets (by industry, then by asset type), but it was
-# written from general knowledge, NOT copied from ASA's licensed tables.
-# Review the class list against the ASA Estimated Normal Useful Life Study
-# before relying on it, and add normal useful lives and index series there.
+# The top two levels follow the sector and asset classification headings of the
+# ASA Machinery & Technical Specialties Committee "Estimated Normal Useful Life
+# Study" (2024). Only those headings are used here. The study's asset lists and
+# normal useful life figures are ASA's copyright and are NOT in this file.
 #
-# Per category:  gl   = general ledger account names seen for these assets
-#                cost = [low, high] typical historical cost, used for synthetic rows
-# Per class:     items = equipment nouns, makes = manufacturers (optional)
-# Class names must be unique across the whole file.
+# basis: asa        the classification heading comes from the ASA study
+# basis: extension  added here because the ASA study has no place for it
+# Sectors named "(not in ASA study)" are extensions as a whole.
+#
+# The third level (asset class) and its items and makes vocabulary are this
+# project's own. How each class was placed under an ASA heading is a judgment
+# made for this project and has not been reviewed by an appraiser.
+#
+# Per classification: gl = ledger account names, cost = [low, high] typical cost.
+# Class names must be unique across the file.
 
-General / Cross-Industry:
-  Material Handling:
+Agricultural & Farming Equipment:
+  Mobile & Material Handling Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Farm Equipment, Farm Machinery]
+    cost: [10000, 900000]
+    classes:
+      Tractors & Combines:
+        items: [row crop tractor, 4WD tractor, combine harvester, utility tractor, cotton picker, forage harvester]
+        makes: [John Deere, Case IH, New Holland, Kubota, AGCO, Claas, Massey Ferguson]
+  Agricultural & Farming Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Farm Equipment, Farm Machinery]
+    cost: [10000, 900000]
+    classes:
+      Tillage, Planting & Spraying:
+        items: [planter, air seeder, self-propelled sprayer, disc harrow, field cultivator, grain drill]
+        makes: [John Deere, Kinze, Case IH, Great Plains, Hagie, Apache]
+      Irrigation Systems:
+        items: [center pivot irrigation, irrigation pump, drip irrigation system, linear move irrigation, irrigation well]
+        makes: [Valley, Lindsay, Reinke, T-L, Netafim]
+      Livestock & Dairy Equipment:
+        items: [milking parlor, robotic milker, feed mixer wagon, manure spreader, bulk milk tank, livestock handling system]
+        makes: [DeLaval, Lely, GEA, BouMatic, Kuhn]
+  Supporting Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Farm Equipment, Farm Machinery]
+    cost: [10000, 900000]
+    classes:
+      Grain Storage & Handling:
+        items: [grain bin, grain dryer, grain leg, auger, grain cart, feed mill]
+        makes: [GSI, Sukup, Brock, Westfield, Brent, Meridian]
+Automobile Production:
+  Primary Process Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [50000, 20000000]
+    classes:
+      Automotive Body, Paint & Assembly Lines:
+        items: [body welding line, automotive paint shop, final assembly conveyor, stamping press line, engine assembly line, body-in-white robot cell]
+        makes: [Kuka, Fanuc, Durr, Comau, Schuler]
+  Process Support Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [5000, 2000000]
+    classes:
+      Automotive Test & Tooling Equipment:
+        items: [chassis dynamometer, end of line tester, torque tools, checking fixtures, wheel alignment system, leak test station]
+        makes: [Atlas Copco, Burke Porter, Hunter, AVL]
+Broadcasting Equipment:
+  Radio Broadcasting Equipment:
+    basis: asa
+    gl: [Broadcast Equipment, Machinery & Equipment, Technical Equipment]
+    cost: [2000, 800000]
+    classes:
+      Radio Studio & Transmission Equipment:
+        items: [FM transmitter, AM transmitter, audio console, radio automation system, studio transmitter link, audio processor]
+        makes: [Nautel, GatesAir, Wheatstone, Harris, Orban]
+  Television Broadcasting Equipment:
+    basis: asa
+    gl: [Broadcast Equipment, Machinery & Equipment, Technical Equipment]
+    cost: [3000, 3000000]
+    classes:
+      Television Studio & Transmission Equipment:
+        items: [broadcast camera, production switcher, TV transmitter, video server, master control system, satellite uplink truck]
+        makes: [Sony, Grass Valley, Ross Video, GatesAir, Evertz]
+  Telecommunication Equipment:
+    basis: asa
+    gl: [Broadcast Equipment, Machinery & Equipment, Technical Equipment]
+    cost: [5000, 5000000]
+    classes:
+      Telecom Network & Tower Equipment:
+        items: [cell tower, fiber optic cable plant, base station radio, central office switch, microwave radio link, DWDM transport equipment]
+        makes: [Ericsson, Nokia, Ciena, Cisco, CommScope]
+Cement Manufacturing Equipment:
+  Primary Production Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [200000, 80000000]
+    classes:
+      Cement Kilns, Mills & Clinker Equipment:
+        items: [rotary kiln, preheater tower, clinker cooler, cement ball mill, vertical roller mill, raw mill]
+        makes: [FLSmidth, KHD, Loesche, Polysius, Gebr. Pfeiffer]
+  Storage, Handling & Packaging Related Assets:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [50000, 10000000]
+    classes:
+      Cement Silos & Packing Equipment:
+        items: [cement silo, clinker storage dome, bulk loadout system, bag packing machine, pneumatic conveying system, bucket elevator]
+        makes: [Haver & Boecker, Claudius Peters, Beumer, IBAU]
+Chemical Processing:
+  Primary Production Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Process Equipment, Plant & Machinery]
+    cost: [15000, 2500000]
+    classes:
+      Reactors & Pressure Vessels:
+        items: [glass lined reactor, stainless reactor, pressure vessel, autoclave, jacketed reactor]
+        makes: [Pfaudler, De Dietrich, Paul Mueller]
+      Distillation & Separation Equipment:
+        items: [distillation column, centrifuge, filter press, evaporator, decanter, membrane filtration skid]
+        makes: [Alfa Laval, GEA, Sulzer, Koch, Andritz]
+      Heat Exchangers & Process Dryers:
+        items: [shell and tube heat exchanger, spray dryer, fluid bed dryer, rotary dryer, tray dryer, process condenser]
+        makes: [GEA Niro, Alfa Laval, Glatt, Kelvion, Wyssmont]
+  Process Support Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Process Equipment, Plant & Machinery]
+    cost: [15000, 2500000]
+    classes:
+      Process Piping & Instrumentation:
+        items: [process piping, control valves, distributed control system, flow meters, PLC control panel, instrumentation]
+        makes: [Emerson, Honeywell, Fisher, Rosemount, Endress+Hauser, Yokogawa]
+Construction Equipment & Materials:
+  Heavy Mobile Construction Equipment / Yellow Iron:
+    basis: asa
+    gl: [Machinery & Equipment, Construction Equipment, Heavy Equipment, Rental Fleet]
+    cost: [8000, 2500000]
+    classes:
+      Excavators:
+        items: [hydraulic excavator, mini excavator, track excavator, wheeled excavator, long reach excavator]
+        makes: [Caterpillar, Komatsu, Deere, Volvo, Hitachi, Kubota, Link-Belt]
+      Wheel Loaders & Backhoes:
+        items: [wheel loader, backhoe loader, skid steer loader, compact track loader, track loader]
+        makes: [Caterpillar, Deere, Case, Bobcat, Komatsu, Volvo, JCB]
+      Dozers, Graders & Scrapers:
+        items: [crawler dozer, motor grader, scraper, bulldozer, wheel dozer]
+        makes: [Caterpillar, Komatsu, Deere, Case]
+      Compaction & Paving Equipment:
+        items: [asphalt paver, vibratory roller, compactor, milling machine, asphalt plant, concrete paver]
+        makes: [Caterpillar, Wirtgen, Bomag, Dynapac, Volvo, Gomaco, Astec]
+      Mobile & Tower Cranes:
+        items: [crawler crane, rough terrain crane, all terrain crane, tower crane, boom truck, truck crane]
+        makes: [Manitowoc, Grove, Liebherr, Link-Belt, Tadano, Terex]
+  Other Mobile Equipment & Related Assets:
+    basis: asa
+    gl: [Machinery & Equipment, Construction Equipment, Rental Fleet]
+    cost: [8000, 2500000]
+    classes:
+      Aerial Work Platforms:
+        items: [boom lift, scissor lift, telehandler, articulating boom lift, mast lift]
+        makes: [JLG, Genie, Skyjack, Haulotte, Snorkel]
+  Other Construction Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Construction Equipment, Rental Fleet]
+    cost: [8000, 2500000]
+    classes:
+      Concrete Equipment:
+        items: [concrete batch plant, concrete pump truck, mixer truck, power trowel, concrete forms, shotcrete machine]
+        makes: [Putzmeister, Schwing, McNeilus, Con-E-Co, Symons]
+      Small Site Equipment & Temporary Works:
+        items: [light tower, portable generator, trench box, scaffolding, plate compactor, dewatering pump, job site trailer]
+        makes: [Wacker Neuson, Multiquip, Doosan, Magnum, Godwin]
+Data Centers:
+  Fixtures & Equipment:
+    basis: asa
+    gl: [Data Center Equipment, Machinery & Equipment, Building Equipment]
+    cost: [5000, 5000000]
+    classes:
+      Data Center Power & Cooling Systems:
+        items: [CRAC unit, uninterruptible power supply, power distribution unit, raised access floor, in-row cooling unit, server cabinets, battery string]
+        makes: [Vertiv, Schneider Electric, Eaton, Stulz, Liebert]
+Electrical & Steam Production & Distribution:
+  Power Generation Equipment:
+    basis: asa
+    gl: [Plant in Service, Generation Plant, Machinery & Equipment]
+    cost: [100000, 20000000]
+    classes:
+      Combustion Turbine & Combined Cycle Plants:
+        items: [gas turbine generator, combined cycle unit, heat recovery steam generator, simple cycle peaker, combustion turbine]
+        makes: [GE, Siemens, Mitsubishi, Solar Turbines, Alstom]
+      Steam & Nuclear Generating Units:
+        items: [steam turbine generator, coal fired unit, utility boiler, nuclear reactor unit, cooling tower, flue gas scrubber]
+        makes: [GE, Westinghouse, Babcock & Wilcox, Siemens, Alstom]
+      Reciprocating Engine Power Plants:
+        items: [cogeneration engine, landfill gas engine generator, CHP unit, prime power generator plant, diesel generating unit]
+        makes: [Jenbacher, Caterpillar, Wartsila, Cummins, Waukesha]
+      Hydroelectric Generating Units:
+        items: [hydro turbine generator, hydroelectric unit, pumped storage unit, penstock, spillway gate]
+        makes: [Voith, Andritz, GE, Allis-Chalmers]
+      Biomass, Geothermal & Other Renewable Units:
+        items: [biomass boiler unit, geothermal turbine, wood waste generating unit, fuel cell power plant, municipal solid waste unit]
+        makes: [Ormat, Bloom Energy, FuelCell Energy]
+  Other Electrical Equipment:
+    basis: asa
+    gl: [Plant in Service, Generation Plant, Machinery & Equipment, Distribution Plant, Utility Plant]
+    cost: [20000, 20000000]
+    classes:
+      Battery Energy Storage Systems:
+        items: [battery energy storage system, lithium-ion battery container, BESS inverter, flywheel storage]
+        makes: [Tesla, Fluence, BYD, LG, Wartsila]
+      Substation & Transmission Equipment:
+        items: [power transformer, circuit breaker, substation, transmission line, capacitor bank, relay panel]
+        makes: [ABB, Siemens, GE, Hitachi Energy, SEL, Eaton]
+      Distribution Lines & Meters:
+        items: [distribution poles, pad mount transformer, underground cable, smart meters, reclosers, overhead conductors]
+        makes: [Itron, Landis+Gyr, Cooper, Howard, S&C]
+Food & Beverage Production:
+  Packaging Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Packaging Equipment, Production Equipment]
+    cost: [8000, 800000]
+    classes:
+      Filling & Capping Machines:
+        items: [liquid filler, rotary filler, capper, auger filler, piston filler, aseptic filler]
+        makes: [Krones, Bosch, Serac, Filler Specialties, Accutek]
+      Form Fill Seal & Wrapping:
+        items: [vertical form fill seal machine, flow wrapper, shrink wrapper, stretch wrapper, bagger, tray sealer]
+        makes: [Hayssen, Bosch, Multivac, Lantech, Ilapak, Wulftec]
+      Case Packing & Palletizing:
+        items: [case erector, case packer, case sealer, palletizer, depalletizer, cartoner]
+        makes: [Wexxar, Douglas, Columbia, Fanuc, Pearson, Alvey]
+      Labeling, Coding & Inspection:
+        items: [pressure sensitive labeler, inkjet coder, laser coder, metal detector, x-ray inspection system, vision inspection system]
+        makes: [Videojet, Markem-Imaje, Domino, Loma, Mettler Toledo, Cognex]
+  Food Production & Processing Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Processing Equipment, Plant & Machinery]
+    cost: [8000, 900000]
+    classes:
+      Mixing & Blending Equipment:
+        items: [ribbon blender, planetary mixer, dough mixer, high shear mixer, paddle mixer, tumbler]
+        makes: [Hobart, Peerless, Marion, Silverson, AMF]
+      Cutting, Slicing & Size Reduction:
+        items: [slicer, dicer, grinder, bowl chopper, hammer mill, portioning machine]
+        makes: [Urschel, Weber, Marel, Fitzpatrick, Treif]
+      Dairy & Liquid Processing:
+        items: [pasteurizer, homogenizer, separator, plate heat exchanger, CIP system, silo tank]
+        makes: [Tetra Pak, GEA, APV, Alfa Laval, SPX]
+  Bakery & Confectionary Product Manufacturing Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Processing Equipment, Plant & Machinery]
+    cost: [8000, 900000]
+    classes:
+      Cooking & Baking Equipment:
+        items: [tunnel oven, rack oven, steam kettle, continuous fryer, retort, proofer, spiral oven]
+        makes: [Baxter, Reading Bakery Systems, Heat and Control, Groen, JBT]
+  Beverage Manufacturing & Bottling Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Brewing Equipment, Production Equipment]
+    cost: [10000, 1500000]
+    classes:
+      Brewing & Fermentation Equipment:
+        items: [brewhouse, fermenter, brite tank, mash tun, lauter tun, glycol system]
+        makes: [JV Northwest, Krones, Ziemann, DME, Premier Stainless]
+      Bottling & Canning Lines:
+        items: [canning line, bottling line, can seamer, bottle rinser, keg filler, crowner]
+        makes: [Krones, KHS, Sidel, Wild Goose, Ferrum, CFT]
+Gaming & Entertainment Equipment:
+  Gaming Equipment:
+    basis: asa
+    gl: [Gaming Equipment, Furniture Fixtures & Equipment]
+    cost: [1000, 200000]
+    classes:
+      Slot Machines & Gaming Tables:
+        items: [slot machine, video poker machine, blackjack table, roulette table, electronic table game, casino management system]
+        makes: [IGT, Aristocrat, Light & Wonder, Konami, Novomatic]
+Glass Manufacturing:
+  Production Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [100000, 50000000]
+    classes:
+      Glass Furnaces & Forming Lines:
+        items: [glass melting furnace, float glass line, IS forming machine, annealing lehr, tempering furnace, glass cutting line]
+        makes: [Bottero, Emhart, Glaston, Lisec, Sorg]
+Grain & Grain Mill Products Manufacturing Equipment:
+  Milling & Manufacturing Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [20000, 5000000]
+    classes:
+      Grain Milling Equipment:
+        items: [roller mill, plansifter, purifier, flour mill, hammer mill, pellet mill, grain cleaner]
+        makes: [Buhler, Ocrim, CPM, Alapala, Satake]
+Hospital Equipment & Furnishings:
+  Medical & Diagnostic Equipment:
+    basis: asa
+    gl: [Medical Equipment, Machinery & Equipment, Clinical Equipment]
+    cost: [3000, 2500000]
+    classes:
+      Diagnostic Imaging Equipment:
+        items: [MRI scanner, CT scanner, x-ray system, ultrasound, mammography unit, C-arm, PET/CT]
+        makes: [GE Healthcare, Siemens Healthineers, Philips, Canon Medical, Hologic, Fujifilm]
+      Surgical & Operating Room Equipment:
+        items: [surgical table, anesthesia machine, surgical light, electrosurgical unit, surgical robot, endoscopy tower]
+        makes: [Stryker, Steris, Getinge, Intuitive, Olympus, Draeger]
+      Dental & Ophthalmic Equipment:
+        items: [dental chair, dental x-ray, cone beam CT, phoropter, slit lamp, OCT scanner]
+        makes: [A-dec, Dentsply Sirona, Planmeca, Zeiss, Topcon]
+  Supporting Equipment:
+    basis: asa
+    gl: [Medical Equipment, Machinery & Equipment, Clinical Equipment]
+    cost: [3000, 2500000]
+    classes:
+      Patient Care & Monitoring Equipment:
+        items: [patient monitor, hospital bed, infusion pump, ventilator, defibrillator, stretcher]
+        makes: [Hill-Rom, Stryker, Philips, Baxter, Medtronic, Zoll]
+Laboratory Equipment:
+  Measurement Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Shop Equipment, Tools & Equipment]
+    cost: [1000, 120000]
+    classes:
+      Inspection & Metrology Equipment:
+        items: [coordinate measuring machine, optical comparator, hardness tester, surface plate, vision measuring system, profilometer]
+        makes: [Zeiss, Mitutoyo, Hexagon, Keyence, Starrett, Brown & Sharpe]
+  Primary Laboratory Equipment:
+    basis: asa
+    gl: [Lab Equipment, Laboratory Equipment, Scientific Equipment]
+    cost: [3000, 900000]
+    classes:
+      Analytical Instruments:
+        items: [HPLC, mass spectrometer, gas chromatograph, spectrophotometer, ICP-MS, NMR spectrometer]
+        makes: [Agilent, Thermo Fisher, Waters, Shimadzu, PerkinElmer, Bruker]
+      Clinical Analyzers & Sequencers:
+        items: [chemistry analyzer, hematology analyzer, DNA sequencer, PCR system, immunoassay analyzer, flow cytometer]
+        makes: [Roche, Abbott, Illumina, Beckman Coulter, Sysmex, Bio-Rad]
+  Supporting Equipment & Instruments:
+    basis: asa
+    gl: [Lab Equipment, Laboratory Equipment, Scientific Equipment]
+    cost: [3000, 900000]
+    classes:
+      General Laboratory Equipment:
+        items: [biosafety cabinet, fume hood, lab freezer, incubator, lab centrifuge, autoclave sterilizer, microscope]
+        makes: [Thermo Scientific, Eppendorf, Labconco, Beckman Coulter, Nikon, Leica]
+Leather Goods Production:
+  Production Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [10000, 1500000]
+    classes:
+      Leather Tanning & Finishing Equipment:
+        items: [tanning drum, splitting machine, shaving machine, leather embossing press, staking machine, spray finishing line]
+        makes: [Rizzi, Gemata, Bergi, Turner]
+Material Handling Equipment:
+  Mobile Material Handling Equipment:
+    basis: asa
     gl: [Machinery & Equipment, Warehouse Equipment, Plant & Machinery]
     cost: [3000, 250000]
     classes:
       Forklifts & Lift Trucks:
         items: [forklift, lift truck, reach truck, electric pallet jack, order picker, counterbalance truck, narrow aisle truck]
         makes: [Toyota, Hyster, Yale, Crown, Raymond, Clark, Linde, Jungheinrich]
+  Cranes & Hoists:
+    basis: asa
+    gl: [Machinery & Equipment, Warehouse Equipment, Plant & Machinery, Vessels, Marine Equipment, Rolling Stock, Transportation Equipment]
+    cost: [3000, 30000000]
+    classes:
       Overhead Cranes & Hoists:
         items: [overhead bridge crane, jib crane, gantry crane, chain hoist, wire rope hoist, monorail hoist]
         makes: [Konecranes, Demag, Gorbel, Spanco, CM, Yale]
+      Port & Container Handling Equipment:
+        items: [ship to shore crane, rubber tired gantry crane, reach stacker, container handler, terminal tractor, straddle carrier]
+        makes: [Kalmar, Konecranes, Liebherr, Taylor, Hyster, ZPMC]
+  Conveyors, Racking & Warehouse Systems:
+    basis: extension
+    gl: [Machinery & Equipment, Warehouse Equipment, Plant & Machinery]
+    cost: [3000, 250000]
+    classes:
       Conveyors & Sortation:
         items: [belt conveyor, roller conveyor, gravity conveyor, sortation system, accumulation conveyor, incline conveyor]
         makes: [Hytrol, Dematic, Interroll, Dorner, Intelligrated]
@@ -31,7 +385,498 @@ General / Cross-Industry:
       Automated Storage & Warehouse Systems:
         items: [automated storage and retrieval system, vertical lift module, carousel, automated guided vehicle, autonomous mobile robot, pallet shuttle]
         makes: [Kardex, Swisslog, Daifuku, Hanel, Locus]
+Metalworking & Forming Equipment:
+  CNC & Machining Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [15000, 900000]
+    classes:
+      CNC Machining Centers:
+        items: [vertical machining center, horizontal machining center, 5-axis machining center, CNC mill, VMC, HMC]
+        makes: [Haas, Mazak, Okuma, DMG Mori, Makino, Doosan, Fanuc]
+      CNC Lathes & Turning Centers:
+        items: [CNC lathe, turning center, swiss lathe, multi-axis turning center, vertical turret lathe]
+        makes: [Haas, Mazak, Okuma, Doosan, Citizen, Star, Nakamura]
+      Grinding Machines:
+        items: [surface grinder, cylindrical grinder, centerless grinder, tool and cutter grinder, ID grinder]
+        makes: [Okamoto, Studer, Cincinnati, Chevalier, Kellenberger]
+      EDM Machines:
+        items: [wire EDM, sinker EDM, ram EDM, hole popper EDM]
+        makes: [Mitsubishi, Sodick, Makino, Charmilles, Fanuc]
+  Manual Machines:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [15000, 900000]
+    classes:
+      Manual Mills & Lathes:
+        items: [knee mill, engine lathe, radial drill, drill press, turret lathe, horizontal boring mill]
+        makes: [Bridgeport, Clausing, LeBlond, Monarch, South Bend]
+  Fabrication Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery, Fabrication Equipment]
+    cost: [10000, 1200000]
+    classes:
+      Saws & Cutoff Machines:
+        items: [horizontal band saw, vertical band saw, cold saw, abrasive cutoff saw, plate saw]
+        makes: [DoALL, Marvel, Hyd-Mech, Amada, Kalamazoo]
+      Press Brakes & Shears:
+        items: [CNC press brake, hydraulic press brake, power shear, plate shear, ironworker]
+        makes: [Amada, Trumpf, Cincinnati, Accurpress, Bystronic, Piranha]
+      Laser, Plasma & Waterjet Cutting:
+        items: [fiber laser cutter, CO2 laser, plasma cutting table, waterjet, turret punch, laser cutting system]
+        makes: [Trumpf, Amada, Bystronic, Mazak, Flow, Omax, Hypertherm]
+      Welding Equipment:
+        items: [MIG welder, TIG welder, robotic welding cell, spot welder, welding positioner, submerged arc welder]
+        makes: [Miller, Lincoln Electric, Fronius, ESAB, Panasonic]
+      Roll Forming & Bending:
+        items: [plate roll, tube bender, roll former, angle roll, pipe bender]
+        makes: [Davi, Faccin, Pines, Eagle, Bradbury]
+  Stamping Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Fabrication Equipment]
+    cost: [10000, 1200000]
+    classes:
+      Stamping & Mechanical Presses:
+        items: [stamping press, straight side press, OBI press, hydraulic press, coil feed line, transfer press]
+        makes: [Minster, Bliss, Aida, Komatsu, Niagara, Danly]
+  Foundry & Forming Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [20000, 1500000]
+    classes:
+      Furnaces & Heat Treating:
+        items: [heat treat furnace, vacuum furnace, tempering oven, induction heater, annealing furnace, carburizing furnace]
+        makes: [Ipsen, Surface Combustion, Lindberg, Inductotherm, Despatch]
+      Foundry & Die Casting Equipment:
+        items: [die casting machine, induction melting furnace, molding machine, core machine, shot blast machine, ladle]
+        makes: [Buhler, Inductotherm, Hunter, Wheelabrator, Disa]
+  Supporting Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [20000, 1500000]
+    classes:
+      Paint & Coating Lines:
+        items: [powder coating line, paint booth, cure oven, e-coat system, plating line, wash line]
+        makes: [Nordson, Global Finishing, Gema, Binks, Graco]
+      Industrial Robots:
+        items: [6-axis robot, robotic cell, collaborative robot, robot palletizer cell, pick and place robot]
+        makes: [Fanuc, ABB, Kuka, Yaskawa Motoman, Universal Robots]
+'Mining and Extractive Resources: Extractive Machinery & Equipment':
+  Extractive Resource & Heavy Construction Mobile Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Mining Equipment, Mobile Equipment]
+    cost: [150000, 6000000]
+    classes:
+      Haul Trucks:
+        items: [off-highway haul truck, rigid frame haul truck, articulated dump truck, mine haul truck]
+        makes: [Caterpillar, Komatsu, Liebherr, Hitachi, Volvo, Bell]
+      Mining Shovels & Draglines:
+        items: [electric rope shovel, hydraulic mining shovel, dragline, mining excavator]
+        makes: [P&H, Bucyrus, Caterpillar, Komatsu, Liebherr, Hitachi]
+      Blasthole Drills:
+        items: [rotary blasthole drill, track drill, down-the-hole drill, production drill rig]
+        makes: [Epiroc, Sandvik, Atlas Copco, Caterpillar]
+  Underground Mining and Support Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Mining Equipment, Mobile Equipment]
+    cost: [150000, 6000000]
+    classes:
+      Underground Mining Equipment:
+        items: [continuous miner, longwall shearer, roof bolter, load haul dump, shuttle car, jumbo drill]
+        makes: [Joy, Sandvik, Epiroc, Caterpillar, Fletcher]
+  Mineral Properties:
+    basis: extension
+    gl: [Mineral Properties, Mine Development, Mining Properties]
+    cost: [200000, 80000000]
+    classes:
+      Mine Sites & Mineral Properties:
+        items: [surface mine, underground mine, quarry, sand and gravel pit, mineral reserves, mine development costs, mine shaft]
+        makes: []
+'Mining and Extractive Resources: Processing Machinery & Equipment':
+  Crushing & Screening Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Plant & Machinery, Processing Plant]
+    cost: [50000, 5000000]
+    classes:
+      Crushing & Screening Plants:
+        items: [jaw crusher, cone crusher, impact crusher, vibrating screen, portable crushing plant, feeder]
+        makes: [Metso, Sandvik, Terex, Cedarapids, Telsmith, Powerscreen]
+  Mill Processing Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Plant & Machinery, Processing Plant]
+    cost: [50000, 5000000]
+    classes:
+      Grinding Mills & Concentration:
+        items: [ball mill, SAG mill, flotation cell, thickener, cyclone cluster, magnetic separator]
+        makes: [FLSmidth, Metso Outotec, Weir, Eriez]
+  Process Support Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Plant & Machinery, Processing Plant]
+    cost: [50000, 5000000]
+    classes:
+      Aggregate Wash & Stockpile Conveyors:
+        items: [wash plant, sand screw, radial stacker, overland conveyor, log washer, stockpile conveyor]
+        makes: [McLanahan, Superior, KPI-JCI, Trio]
+Office and Computer Equipment:
+  Office Equipment, Furniture & Fixtures:
+    basis: asa
+    gl: [Furniture & Fixtures, Office Furniture, F&F]
+    cost: [300, 60000]
+    classes:
+      Office Furniture:
+        items: [desk, task chair, filing cabinet, conference table, bookcase, credenza, reception desk]
+        makes: [Steelcase, Herman Miller, Haworth, Knoll, HON]
+      Workstations & Cubicles:
+        items: [cubicle workstations, modular workstation, systems furniture, benching system, partition panels]
+        makes: [Steelcase, Herman Miller, Haworth, Teknion, Allsteel]
+      Office Machines:
+        items: [copier, multifunction printer, shredder, postage machine, plotter, projector]
+        makes: [Xerox, Ricoh, Canon, Konica Minolta, Pitney Bowes, HP]
+  Computer Equipment:
+    basis: asa
+    gl: [Computer Equipment, IT Equipment, Computer Hardware]
+    cost: [600, 150000]
+    classes:
+      Servers & Storage:
+        items: [rack server, blade server, storage array, SAN, NAS, tape library, hyperconverged node]
+        makes: [Dell, HPE, NetApp, IBM, Lenovo, Pure Storage]
+      Personal Computers & Peripherals:
+        items: [laptop, desktop computer, workstation PC, monitor, docking station, tablet]
+        makes: [Dell, HP, Lenovo, Apple, Microsoft]
+      Network Equipment:
+        items: [network switch, router, firewall, wireless access point, UPS, server rack]
+        makes: [Cisco, Juniper, Aruba, Fortinet, Palo Alto, APC]
+      Telephone & AV Systems:
+        items: [phone system, PBX, VoIP handsets, video conferencing system, audio visual system, paging system]
+        makes: [Avaya, Cisco, Polycom, Mitel, Crestron]
+Oil & Gas Production & Distribution:
+  Exploration & Production Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Oilfield Equipment, Lease & Well Equipment]
+    cost: [25000, 8000000]
+    classes:
+      Drilling Rigs & Components:
+        items: [land drilling rig, top drive, mud pump, drawworks, blowout preventer, drill pipe]
+        makes: [National Oilwell Varco, Cameron, Gardner Denver, Canrig]
+      Well Servicing & Pressure Pumping:
+        items: [frac pump, coiled tubing unit, workover rig, cementing unit, wireline unit, nitrogen unit]
+        makes: [Halliburton, SPM, Stewart & Stevenson, Weatherford, NOV]
+      Wellhead & Production Equipment:
+        items: [pumping unit, wellhead, separator, heater treater, artificial lift system, tank battery]
+        makes: [Lufkin, Cameron, Weatherford, FMC, Schlumberger]
+      Offshore Platforms & Floating Production:
+        items: [fixed leg platform, caisson, well protector platform, spar, tension leg platform, FPSO, semi-submersible production unit, subsea manifold]
+        makes: []
+  Pipelines & Distribution Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Pipeline Equipment, Plant & Machinery]
+    cost: [50000, 10000000]
+    classes:
+      Gas Compression & Pipeline Equipment:
+        items: [gas compressor package, pipeline compressor, pig launcher, meter station, dehydration unit, pipeline pump station]
+        makes: [Ariel, Caterpillar, Solar Turbines, Waukesha, Exterran]
+      Petroleum Storage & Terminals:
+        items: [bulk storage tank, loading rack, vapor recovery unit, floating roof tank, truck loading terminal]
+        makes: [CB&I, Matrix, John Zink]
+  Refinery Process & Process Support Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Pipeline Equipment, Plant & Machinery]
+    cost: [50000, 10000000]
+    classes:
+      Refining & Gas Processing Units:
+        items: [amine unit, cryogenic gas plant, crude unit, fractionation tower, flare system, sulfur recovery unit]
+        makes: [UOP, Exterran, Linde]
+Pharmaceutical Manufacturing Equipment:
+  Primary Production Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Lab & Production Equipment]
+    cost: [20000, 2000000]
+    classes:
+      Tablet & Capsule Equipment:
+        items: [tablet press, capsule filler, coating pan, granulator, roller compactor, blister packaging machine]
+        makes: [Fette, Korsch, Bosch, IMA, Glatt, Uhlmann]
+      Sterile Fill & Lyophilization:
+        items: [vial filling line, lyophilizer, isolator, steam sterilizer, depyrogenation tunnel, freeze dryer]
+        makes: [Bausch+Strobel, IMA, SP Scientific, Getinge, Steris]
+  Clean Room:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Lab & Production Equipment]
+    cost: [20000, 2000000]
+    classes:
+      Cleanroom & Purified Water Systems:
+        items: [cleanroom, HEPA filtration system, purified water system, WFI still, reverse osmosis skid, laminar flow hood]
+        makes: [MECO, Veolia, AES Clean Technology, Evoqua]
+Plastics Production:
+  Plastic Products Manufacturing Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Molding Equipment]
+    cost: [20000, 1200000]
+    classes:
+      Injection Molding Machines:
+        items: [injection molding machine, injection press, electric injection molder, two-shot molding machine]
+        makes: [Engel, Arburg, Milacron, Husky, Nissei, Toshiba, Krauss Maffei]
+      Extrusion Lines:
+        items: [single screw extruder, twin screw extruder, sheet extrusion line, profile extrusion line, pelletizer, blown film line]
+        makes: [Davis-Standard, Coperion, Cincinnati Milacron, Battenfeld, Leistritz]
+      Blow Molding & Thermoforming:
+        items: [blow molding machine, stretch blow molder, thermoformer, rotational molder, vacuum former]
+        makes: [Sidel, Bekum, Uniloy, Brown, Illig]
+      Plastics Auxiliary Equipment:
+        items: [resin dryer, granulator, material loader, mold temperature controller, blender, hot runner controller]
+        makes: [Conair, Novatec, Matsui, Cumberland, Motan]
+  Molds and Automations:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Molding Equipment]
+    cost: [20000, 1200000]
+    classes:
+      Molds, Dies & Tooling:
+        items: [injection mold, stamping die, extrusion die, production tooling, mold base, jigs and fixtures]
+        makes: []
+Printing & Publishing:
+  Primary Process Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Printing Equipment, Production Equipment]
+    cost: [15000, 3000000]
+    classes:
+      Printing Presses:
+        items: [sheetfed offset press, web offset press, flexographic press, digital press, wide format printer, label press]
+        makes: [Heidelberg, Komori, Manroland, HP Indigo, Mark Andy, Koenig & Bauer]
+  Process Support Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Printing Equipment, Production Equipment]
+    cost: [15000, 3000000]
+    classes:
+      Bindery & Finishing Equipment:
+        items: [paper cutter, folder, saddle stitcher, perfect binder, die cutter, laminator]
+        makes: [Polar, Muller Martini, Stahl, MBO, Bobst, Duplo]
+Railroad Equipment:
+  Fleet Related Assets:
+    basis: asa
+    gl: [Vessels, Marine Equipment, Rolling Stock, Transportation Equipment, Revenue Equipment, Vehicles]
+    cost: [40000, 30000000]
+    classes:
+      Locomotives & Railcars:
+        items: [locomotive, tank car, covered hopper car, boxcar, gondola car, railcar mover]
+        makes: [EMD, GE, Wabtec, Trinity, Greenbrier, Trackmobile]
+      Rail Transit Vehicles:
+        items: [heavy rail passenger car, light rail vehicle, commuter rail coach, streetcar, subway car, commuter rail locomotive]
+        makes: [Siemens, Kawasaki, Bombardier, Alstom, Stadler, Kinkisharyo]
+  Track Property:
+    basis: asa
+    gl: [Infrastructure, Track & Guideway, Buildings & Improvements]
+    cost: [50000, 200000000]
+    classes:
+      Track, Guideway & Signals:
+        items: [track, rail and ties, overhead catenary system, signal system, traction power substation, grade crossing]
+        makes: []
+Refrigeration – Walk-in and Cold Storage:
+  Refrigeration Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Processing Equipment, Plant & Machinery, Restaurant Equipment, Kitchen Equipment, Furniture Fixtures & Equipment]
+    cost: [1500, 900000]
+    classes:
+      Refrigeration & Freezing Systems:
+        items: [spiral freezer, blast freezer, ammonia refrigeration system, IQF tunnel, walk-in cooler, evaporator]
+        makes: [Frick, Vilter, JBT Frigoscandia, Mycom, GEA]
+      Commercial Refrigeration:
+        items: [walk-in cooler, reach-in refrigerator, ice machine, display case, undercounter freezer, beverage cooler]
+        makes: ['True', Traulsen, Hoshizaki, Manitowoc, Hussmann, Kolpak]
+Restaurant & Bar Equipment:
+  Kitchen Equipment:
+    basis: asa
+    gl: [Restaurant Equipment, Kitchen Equipment, Furniture Fixtures & Equipment]
+    cost: [1500, 120000]
+    classes:
+      Commercial Kitchen Equipment:
+        items: [combi oven, commercial range, fryer, griddle, dish machine, exhaust hood, charbroiler]
+        makes: [Rational, Vulcan, Hobart, Pitco, Garland, Southbend, Blodgett]
+Retail Store Equipment:
+  General Retail Equipment:
+    basis: asa
+    gl: [Furniture Fixtures & Equipment, Store Fixtures, FF&E]
+    cost: [800, 200000]
+    classes:
+      Store Fixtures & Point of Sale:
+        items: [gondola shelving, checkout counter, POS terminal, display fixtures, self-checkout kiosk, shopping carts]
+        makes: [Lozier, Madix, NCR, Toshiba, Verifone]
+      Signage & Security Systems:
+        items: [pylon sign, digital signage, CCTV system, access control system, LED video wall, monument sign]
+        makes: [Daktronics, Axis, Avigilon, Samsung, Honeywell]
+Rubber Production:
+  Rubber Production Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [50000, 10000000]
+    classes:
+      Rubber Mixing, Calendering & Tire Building Equipment:
+        items: [Banbury mixer, rubber calender, tire building machine, tire curing press, two roll mill, rubber extruder]
+        makes: [Farrel, HF Mixing, VMI, Kobelco, Troester]
+Solar Panels:
+  Modules:
+    basis: asa
+    gl: [Plant in Service, Generation Plant, Machinery & Equipment]
+    cost: [100000, 20000000]
+    classes:
+      Solar Generation Equipment:
+        items: [solar PV array, solar inverter, single-axis tracker system, solar modules, solar thermal collector field]
+        makes: [First Solar, SMA, Nextracker, SunPower, Canadian Solar, Jinko]
+Steel Mill Production:
+  Primary Steelmaking and Steel Mill Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [500000, 300000000]
+    classes:
+      Steelmaking Furnaces & Casters:
+        items: [electric arc furnace, basic oxygen furnace, continuous caster, ladle metallurgy furnace, blast furnace, reheat furnace]
+        makes: [SMS, Danieli, Primetals, Tenova]
+  Other Finishing Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [200000, 100000000]
+    classes:
+      Rolling Mills & Finishing Lines:
+        items: [hot strip mill, cold rolling mill, galvanizing line, pickling line, slitting line, bar mill]
+        makes: [SMS, Danieli, Primetals, Andritz, Fives]
+Textile and Clothing Manufacturing:
+  Primary Production Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
+    cost: [10000, 3000000]
+    classes:
+      Textile Spinning, Weaving & Knitting Machines:
+        items: [air jet loom, ring spinning frame, circular knitting machine, carding machine, dyeing machine, stenter frame]
+        makes: [Picanol, Rieter, Toyota, Trutzschler, Mayer & Cie, Monforts]
+      Sewing & Garment Equipment:
+        items: [industrial sewing machine, automatic fabric cutter, embroidery machine, fabric spreader, garment press, overlock machine]
+        makes: [Juki, Brother, Gerber, Lectra, Tajima]
+Vehicles and Transportation Equipment:
+  Vehicles & Transportation Equipment:
+    basis: asa
+    gl: [Vehicles, Autos & Trucks, Motor Vehicles, Transportation Equipment, Revenue Equipment]
+    cost: [12000, 600000]
+    classes:
+      Passenger Cars & Light Trucks:
+        items: [pickup truck, sedan, SUV, cargo van, passenger van, crew cab pickup]
+        makes: [Ford, Chevrolet, Toyota, Ram, GMC, Nissan]
+      Medium & Heavy Trucks:
+        items: [box truck, flatbed truck, dump truck, service truck, stake bed truck, tractor day cab]
+        makes: [Freightliner, International, Peterbilt, Kenworth, Isuzu, Hino, Mack]
+      Trailers:
+        items: [dry van trailer, flatbed trailer, utility trailer, lowboy trailer, refrigerated trailer, enclosed trailer]
+        makes: [Great Dane, Wabash, Utility, Fontaine, Big Tex]
+      Over-the-Road Tractors:
+        items: [sleeper tractor, class 8 tractor, highway tractor, semi truck, tandem axle sleeper]
+        makes: [Freightliner, Peterbilt, Kenworth, Volvo, International, Mack]
+      Buses & Transit Vehicles:
+        items: [transit bus, motor coach, school bus, shuttle bus, paratransit van]
+        makes: [New Flyer, Gillig, Blue Bird, Thomas Built, MCI, Prevost]
+      Fuel Tankers & Specialty Trucks:
+        items: [fuel tanker truck, vacuum truck, refuse truck, crane truck, bucket truck, tank trailer]
+        makes: [Heil, McNeilus, Vactor, Altec, Polar, Terex]
+  Marine Transportation Assets:
+    basis: asa
+    gl: [Vessels, Marine Equipment, Rolling Stock, Transportation Equipment]
+    cost: [100000, 30000000]
+    classes:
+      Vessels & Barges:
+        items: [tugboat, deck barge, tank barge, offshore supply vessel, crew boat, towboat, dredge]
+        makes: []
+Wastewater Treatment:
+  Wastewater Treatment Equipment:
+    basis: asa
+    gl: [Plant in Service, Distribution Plant, Utility Plant]
+    cost: [20000, 5000000]
+    classes:
+      Water & Wastewater Treatment Equipment:
+        items: [clarifier, aeration blower, UV disinfection system, lift station, belt filter press, chemical feed system]
+        makes: [Evoqua, Xylem, Aerzen, Trojan, Flygt, Ovivo]
+Wind Turbines:
+  Turbine:
+    basis: asa
+    gl: [Plant in Service, Generation Plant, Machinery & Equipment]
+    cost: [100000, 20000000]
+    classes:
+      Wind Turbines:
+        items: [wind turbine, wind turbine generator, wind farm turbines, turbine tower and blades]
+        makes: [Vestas, GE, Siemens Gamesa, Nordex, Suzlon]
+Woodworking, Pulp & Paper Products:
+  Mobile Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Logging Equipment, Mobile Equipment]
+    cost: [50000, 900000]
+    classes:
+      Logging Equipment:
+        items: [feller buncher, skidder, log loader, harvester, forwarder, delimber, whole tree chipper]
+        makes: [Tigercat, John Deere, Caterpillar, Ponsse, Komatsu, Morbark]
+  Paper & Pulp Manufacturing Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Printing Equipment, Production Equipment, Mill Equipment, Plant & Machinery]
+    cost: [15000, 10000000]
+    classes:
+      Paper Converting & Corrugating:
+        items: [corrugator, flexo folder gluer, slitter rewinder, sheeter, rotary die cutter, bag machine]
+        makes: [BHS, Fosber, Bobst, Ward, Marquip, Martin]
+      Pulp & Paper Mill Equipment:
+        items: [paper machine, digester, recovery boiler, refiner, winder, pulper, tissue machine]
+        makes: [Valmet, Voith, Andritz, Beloit, Kadant]
+  Sawmill Machinery & Equipment:
+    basis: asa
+    gl: [Machinery & Equipment, Mill Equipment, Plant & Machinery]
+    cost: [20000, 10000000]
+    classes:
+      Sawmill & Woodworking Equipment:
+        items: [CNC router, panel saw, edgebander, planer, moulder, head rig, dry kiln, wide belt sander]
+        makes: [Biesse, Homag, SCM, Weinig, USNR, Holz-Her]
+Aircraft (not in ASA study):
+  Aircraft:
+    basis: extension
+    gl: [Aircraft, Flight Equipment, Transportation Equipment]
+    cost: [200000, 60000000]
+    classes:
+      Fixed-Wing Aircraft:
+        items: [business jet, turboprop aircraft, regional jet, piston aircraft, narrowbody aircraft, single engine airplane]
+        makes: [Cessna, Gulfstream, Bombardier, Beechcraft, Piper, Airbus, Boeing, Embraer]
+      Helicopters & Rotorcraft:
+        items: [helicopter, turbine helicopter, rotorcraft, medevac helicopter]
+        makes: [Bell, Airbus Helicopters, Sikorsky, Robinson, Leonardo]
+      Aircraft Engines & Rotables:
+        items: [turbofan engine, spare engine, auxiliary power unit, landing gear set, propeller, rotable spares]
+        makes: [Pratt & Whitney, GE, Rolls-Royce, CFM, Honeywell]
+      Ground Support Equipment:
+        items: [aircraft tug, ground power unit, belt loader, deicing truck, baggage tractor, air start unit]
+        makes: [TLD, JBT, Tug, Tronair, Global Ground Support]
+Electronics & Semiconductor Manufacturing (not in ASA study):
+  Electronics Assembly:
+    basis: extension
+    gl: [Machinery & Equipment, Production Equipment, Test Equipment]
+    cost: [10000, 1500000]
+    classes:
+      SMT & PCB Assembly Equipment:
+        items: [pick and place machine, reflow oven, screen printer, wave solder machine, selective solder, SMT line]
+        makes: [Fuji, Panasonic, ASM, Juki, Heller, DEK, Yamaha]
+      Electronic Test & Measurement:
+        items: [automated test equipment, oscilloscope, spectrum analyzer, in-circuit tester, network analyzer, burn-in chamber]
+        makes: [Keysight, Tektronix, Teradyne, Rohde & Schwarz, National Instruments, Advantest]
+      Environmental Test Chambers:
+        items: [environmental chamber, thermal shock chamber, vibration table, salt spray chamber, altitude chamber]
+        makes: [Thermotron, Espec, Cincinnati Sub-Zero, Unholtz-Dickie, Weiss]
+  Semiconductor Fabrication:
+    basis: extension
+    gl: [Machinery & Equipment, Fab Equipment, Production Equipment]
+    cost: [100000, 40000000]
+    classes:
+      Lithography & Etch Tools:
+        items: [stepper, scanner, plasma etcher, mask aligner, track system, lithography tool]
+        makes: [ASML, Nikon, Lam Research, Applied Materials, Tokyo Electron, Canon]
+      Deposition, Implant & Thermal Tools:
+        items: [CVD system, PVD sputter tool, ion implanter, diffusion furnace, ALD system, rapid thermal processor, epitaxial reactor]
+        makes: [Applied Materials, Lam Research, Tokyo Electron, Axcelis, ASM, Kokusai]
+      Wafer Metrology, Probe & Packaging:
+        items: [wafer prober, wire bonder, die bonder, wafer inspection system, CMP tool, dicing saw]
+        makes: [KLA, Kulicke & Soffa, Disco, Tokyo Electron, ASM Pacific, Onto]
+General Plant Support (not in ASA study):
   Plant Utilities & Support:
+    basis: extension
     gl: [Machinery & Equipment, Plant Equipment, Utilities Equipment]
     cost: [5000, 600000]
     classes:
@@ -56,555 +901,20 @@ General / Cross-Industry:
       Pumps & Tanks:
         items: [centrifugal pump, storage tank, stainless tank, sump pump, diaphragm pump, day tank]
         makes: [Goulds, Grundfos, Gorman-Rupp, Wilden]
-  Office Furniture & Fixtures:
-    gl: [Furniture & Fixtures, Office Furniture, F&F]
-    cost: [300, 60000]
-    classes:
-      Office Furniture:
-        items: [desk, task chair, filing cabinet, conference table, bookcase, credenza, reception desk]
-        makes: [Steelcase, Herman Miller, Haworth, Knoll, HON]
-      Workstations & Cubicles:
-        items: [cubicle workstations, modular workstation, systems furniture, benching system, partition panels]
-        makes: [Steelcase, Herman Miller, Haworth, Teknion, Allsteel]
-      Office Machines:
-        items: [copier, multifunction printer, shredder, postage machine, plotter, projector]
-        makes: [Xerox, Ricoh, Canon, Konica Minolta, Pitney Bowes, HP]
-  Computer & Communications Equipment:
-    gl: [Computer Equipment, IT Equipment, Computer Hardware]
-    cost: [600, 150000]
-    classes:
-      Servers & Storage:
-        items: [rack server, blade server, storage array, SAN, NAS, tape library, hyperconverged node]
-        makes: [Dell, HPE, NetApp, IBM, Lenovo, Pure Storage]
-      Personal Computers & Peripherals:
-        items: [laptop, desktop computer, workstation PC, monitor, docking station, tablet]
-        makes: [Dell, HP, Lenovo, Apple, Microsoft]
-      Network Equipment:
-        items: [network switch, router, firewall, wireless access point, UPS, server rack]
-        makes: [Cisco, Juniper, Aruba, Fortinet, Palo Alto, APC]
-      Telephone & AV Systems:
-        items: [phone system, PBX, VoIP handsets, video conferencing system, audio visual system, paging system]
-        makes: [Avaya, Cisco, Polycom, Mitel, Crestron]
-  Vehicles:
-    gl: [Vehicles, Autos & Trucks, Motor Vehicles, Transportation Equipment]
-    cost: [12000, 180000]
-    classes:
-      Passenger Cars & Light Trucks:
-        items: [pickup truck, sedan, SUV, cargo van, passenger van, crew cab pickup]
-        makes: [Ford, Chevrolet, Toyota, Ram, GMC, Nissan]
-      Medium & Heavy Trucks:
-        items: [box truck, flatbed truck, dump truck, service truck, stake bed truck, tractor day cab]
-        makes: [Freightliner, International, Peterbilt, Kenworth, Isuzu, Hino, Mack]
-      Trailers:
-        items: [dry van trailer, flatbed trailer, utility trailer, lowboy trailer, refrigerated trailer, enclosed trailer]
-        makes: [Great Dane, Wabash, Utility, Fontaine, Big Tex]
   Shop, Test & Maintenance Equipment:
+    basis: extension
     gl: [Machinery & Equipment, Shop Equipment, Tools & Equipment]
     cost: [1000, 120000]
     classes:
       Shop Tools & Maintenance Equipment:
         items: [tool crib cabinets, hydraulic shop press, parts washer, pressure washer, floor scrubber, scissor lift table, workbench]
         makes: [Snap-on, Lista, Tennant, Vidmar, Dake]
-      Inspection & Metrology Equipment:
-        items: [coordinate measuring machine, optical comparator, hardness tester, surface plate, vision measuring system, profilometer]
-        makes: [Zeiss, Mitutoyo, Hexagon, Keyence, Starrett, Brown & Sharpe]
       Scales & Weighing Equipment:
         items: [truck scale, floor scale, bench scale, checkweigher, counting scale]
         makes: [Mettler Toledo, Fairbanks, Rice Lake, Cardinal]
-
-Manufacturing - Metalworking & Fabrication:
-  Machine Tools:
-    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
-    cost: [15000, 900000]
-    classes:
-      CNC Machining Centers:
-        items: [vertical machining center, horizontal machining center, 5-axis machining center, CNC mill, VMC, HMC]
-        makes: [Haas, Mazak, Okuma, DMG Mori, Makino, Doosan, Fanuc]
-      CNC Lathes & Turning Centers:
-        items: [CNC lathe, turning center, swiss lathe, multi-axis turning center, vertical turret lathe]
-        makes: [Haas, Mazak, Okuma, Doosan, Citizen, Star, Nakamura]
-      Manual Mills & Lathes:
-        items: [knee mill, engine lathe, radial drill, drill press, turret lathe, horizontal boring mill]
-        makes: [Bridgeport, Clausing, LeBlond, Monarch, South Bend]
-      Grinding Machines:
-        items: [surface grinder, cylindrical grinder, centerless grinder, tool and cutter grinder, ID grinder]
-        makes: [Okamoto, Studer, Cincinnati, Chevalier, Kellenberger]
-      EDM Machines:
-        items: [wire EDM, sinker EDM, ram EDM, hole popper EDM]
-        makes: [Mitsubishi, Sodick, Makino, Charmilles, Fanuc]
-      Saws & Cutoff Machines:
-        items: [horizontal band saw, vertical band saw, cold saw, abrasive cutoff saw, plate saw]
-        makes: [DoALL, Marvel, Hyd-Mech, Amada, Kalamazoo]
-  Fabrication & Forming:
-    gl: [Machinery & Equipment, Production Equipment, Fabrication Equipment]
-    cost: [10000, 1200000]
-    classes:
-      Press Brakes & Shears:
-        items: [CNC press brake, hydraulic press brake, power shear, plate shear, ironworker]
-        makes: [Amada, Trumpf, Cincinnati, Accurpress, Bystronic, Piranha]
-      Laser, Plasma & Waterjet Cutting:
-        items: [fiber laser cutter, CO2 laser, plasma cutting table, waterjet, turret punch, laser cutting system]
-        makes: [Trumpf, Amada, Bystronic, Mazak, Flow, Omax, Hypertherm]
-      Stamping & Mechanical Presses:
-        items: [stamping press, straight side press, OBI press, hydraulic press, coil feed line, transfer press]
-        makes: [Minster, Bliss, Aida, Komatsu, Niagara, Danly]
-      Welding Equipment:
-        items: [MIG welder, TIG welder, robotic welding cell, spot welder, welding positioner, submerged arc welder]
-        makes: [Miller, Lincoln Electric, Fronius, ESAB, Panasonic]
-      Roll Forming & Bending:
-        items: [plate roll, tube bender, roll former, angle roll, pipe bender]
-        makes: [Davi, Faccin, Pines, Eagle, Bradbury]
-  Heat Treat, Casting & Finishing:
-    gl: [Machinery & Equipment, Production Equipment, Plant & Machinery]
-    cost: [20000, 1500000]
-    classes:
-      Furnaces & Heat Treating:
-        items: [heat treat furnace, vacuum furnace, tempering oven, induction heater, annealing furnace, carburizing furnace]
-        makes: [Ipsen, Surface Combustion, Lindberg, Inductotherm, Despatch]
-      Foundry & Die Casting Equipment:
-        items: [die casting machine, induction melting furnace, molding machine, core machine, shot blast machine, ladle]
-        makes: [Buhler, Inductotherm, Hunter, Wheelabrator, Disa]
-      Paint & Coating Lines:
-        items: [powder coating line, paint booth, cure oven, e-coat system, plating line, wash line]
-        makes: [Nordson, Global Finishing, Gema, Binks, Graco]
-      Industrial Robots:
-        items: [6-axis robot, robotic cell, collaborative robot, robot palletizer cell, pick and place robot]
-        makes: [Fanuc, ABB, Kuka, Yaskawa Motoman, Universal Robots]
-
-Manufacturing - Plastics, Rubber & Packaging:
-  Plastics & Rubber Processing:
-    gl: [Machinery & Equipment, Production Equipment, Molding Equipment]
-    cost: [20000, 1200000]
-    classes:
-      Injection Molding Machines:
-        items: [injection molding machine, injection press, electric injection molder, two-shot molding machine]
-        makes: [Engel, Arburg, Milacron, Husky, Nissei, Toshiba, Krauss Maffei]
-      Extrusion Lines:
-        items: [single screw extruder, twin screw extruder, sheet extrusion line, profile extrusion line, pelletizer, blown film line]
-        makes: [Davis-Standard, Coperion, Cincinnati Milacron, Battenfeld, Leistritz]
-      Blow Molding & Thermoforming:
-        items: [blow molding machine, stretch blow molder, thermoformer, rotational molder, vacuum former]
-        makes: [Sidel, Bekum, Uniloy, Brown, Illig]
-      Molds, Dies & Tooling:
-        items: [injection mold, stamping die, extrusion die, production tooling, mold base, jigs and fixtures]
-        makes: []
-      Plastics Auxiliary Equipment:
-        items: [resin dryer, granulator, material loader, mold temperature controller, blender, hot runner controller]
-        makes: [Conair, Novatec, Matsui, Cumberland, Motan]
-  Packaging Equipment:
-    gl: [Machinery & Equipment, Packaging Equipment, Production Equipment]
-    cost: [8000, 800000]
-    classes:
-      Filling & Capping Machines:
-        items: [liquid filler, rotary filler, capper, auger filler, piston filler, aseptic filler]
-        makes: [Krones, Bosch, Serac, Filler Specialties, Accutek]
-      Form Fill Seal & Wrapping:
-        items: [vertical form fill seal machine, flow wrapper, shrink wrapper, stretch wrapper, bagger, tray sealer]
-        makes: [Hayssen, Bosch, Multivac, Lantech, Ilapak, Wulftec]
-      Case Packing & Palletizing:
-        items: [case erector, case packer, case sealer, palletizer, depalletizer, cartoner]
-        makes: [Wexxar, Douglas, Columbia, Fanuc, Pearson, Alvey]
-      Labeling, Coding & Inspection:
-        items: [pressure sensitive labeler, inkjet coder, laser coder, metal detector, x-ray inspection system, vision inspection system]
-        makes: [Videojet, Markem-Imaje, Domino, Loma, Mettler Toledo, Cognex]
-
-Food & Beverage Processing:
-  Food Processing:
-    gl: [Machinery & Equipment, Processing Equipment, Plant & Machinery]
-    cost: [8000, 900000]
-    classes:
-      Mixing & Blending Equipment:
-        items: [ribbon blender, planetary mixer, dough mixer, high shear mixer, paddle mixer, tumbler]
-        makes: [Hobart, Peerless, Marion, Silverson, AMF]
-      Cooking & Baking Equipment:
-        items: [tunnel oven, rack oven, steam kettle, continuous fryer, retort, proofer, spiral oven]
-        makes: [Baxter, Reading Bakery Systems, Heat and Control, Groen, JBT]
-      Cutting, Slicing & Size Reduction:
-        items: [slicer, dicer, grinder, bowl chopper, hammer mill, portioning machine]
-        makes: [Urschel, Weber, Marel, Fitzpatrick, Treif]
-      Refrigeration & Freezing Systems:
-        items: [spiral freezer, blast freezer, ammonia refrigeration system, IQF tunnel, walk-in cooler, evaporator]
-        makes: [Frick, Vilter, JBT Frigoscandia, Mycom, GEA]
-      Dairy & Liquid Processing:
-        items: [pasteurizer, homogenizer, separator, plate heat exchanger, CIP system, silo tank]
-        makes: [Tetra Pak, GEA, APV, Alfa Laval, SPX]
-  Beverage & Brewing:
-    gl: [Machinery & Equipment, Brewing Equipment, Production Equipment]
-    cost: [10000, 1500000]
-    classes:
-      Brewing & Fermentation Equipment:
-        items: [brewhouse, fermenter, brite tank, mash tun, lauter tun, glycol system]
-        makes: [JV Northwest, Krones, Ziemann, DME, Premier Stainless]
-      Bottling & Canning Lines:
-        items: [canning line, bottling line, can seamer, bottle rinser, keg filler, crowner]
-        makes: [Krones, KHS, Sidel, Wild Goose, Ferrum, CFT]
-
-Chemical, Pharmaceutical & Process:
-  Process Equipment:
-    gl: [Machinery & Equipment, Process Equipment, Plant & Machinery]
-    cost: [15000, 2500000]
-    classes:
-      Reactors & Pressure Vessels:
-        items: [glass lined reactor, stainless reactor, pressure vessel, autoclave, jacketed reactor]
-        makes: [Pfaudler, De Dietrich, Paul Mueller]
-      Distillation & Separation Equipment:
-        items: [distillation column, centrifuge, filter press, evaporator, decanter, membrane filtration skid]
-        makes: [Alfa Laval, GEA, Sulzer, Koch, Andritz]
-      Heat Exchangers & Process Dryers:
-        items: [shell and tube heat exchanger, spray dryer, fluid bed dryer, rotary dryer, tray dryer, process condenser]
-        makes: [GEA Niro, Alfa Laval, Glatt, Kelvion, Wyssmont]
-      Process Piping & Instrumentation:
-        items: [process piping, control valves, distributed control system, flow meters, PLC control panel, instrumentation]
-        makes: [Emerson, Honeywell, Fisher, Rosemount, Endress+Hauser, Yokogawa]
-  Pharmaceutical Manufacturing:
-    gl: [Machinery & Equipment, Production Equipment, Lab & Production Equipment]
-    cost: [20000, 2000000]
-    classes:
-      Tablet & Capsule Equipment:
-        items: [tablet press, capsule filler, coating pan, granulator, roller compactor, blister packaging machine]
-        makes: [Fette, Korsch, Bosch, IMA, Glatt, Uhlmann]
-      Sterile Fill & Lyophilization:
-        items: [vial filling line, lyophilizer, isolator, steam sterilizer, depyrogenation tunnel, freeze dryer]
-        makes: [Bausch+Strobel, IMA, SP Scientific, Getinge, Steris]
-      Cleanroom & Purified Water Systems:
-        items: [cleanroom, HEPA filtration system, purified water system, WFI still, reverse osmosis skid, laminar flow hood]
-        makes: [MECO, Veolia, AES Clean Technology, Evoqua]
-
-Oil & Gas:
-  Upstream:
-    gl: [Machinery & Equipment, Oilfield Equipment, Lease & Well Equipment]
-    cost: [25000, 8000000]
-    classes:
-      Drilling Rigs & Components:
-        items: [land drilling rig, top drive, mud pump, drawworks, blowout preventer, drill pipe]
-        makes: [National Oilwell Varco, Cameron, Gardner Denver, Canrig]
-      Well Servicing & Pressure Pumping:
-        items: [frac pump, coiled tubing unit, workover rig, cementing unit, wireline unit, nitrogen unit]
-        makes: [Halliburton, SPM, Stewart & Stevenson, Weatherford, NOV]
-      Wellhead & Production Equipment:
-        items: [pumping unit, wellhead, separator, heater treater, artificial lift system, tank battery]
-        makes: [Lufkin, Cameron, Weatherford, FMC, Schlumberger]
-      Offshore Platforms & Floating Production:
-        items: [fixed leg platform, caisson, well protector platform, spar, tension leg platform, FPSO, semi-submersible production unit, subsea manifold]
-        makes: []
-  Midstream & Downstream:
-    gl: [Machinery & Equipment, Pipeline Equipment, Plant & Machinery]
-    cost: [50000, 10000000]
-    classes:
-      Gas Compression & Pipeline Equipment:
-        items: [gas compressor package, pipeline compressor, pig launcher, meter station, dehydration unit, pipeline pump station]
-        makes: [Ariel, Caterpillar, Solar Turbines, Waukesha, Exterran]
-      Refining & Gas Processing Units:
-        items: [amine unit, cryogenic gas plant, crude unit, fractionation tower, flare system, sulfur recovery unit]
-        makes: [UOP, Exterran, Linde]
-      Petroleum Storage & Terminals:
-        items: [bulk storage tank, loading rack, vapor recovery unit, floating roof tank, truck loading terminal]
-        makes: [CB&I, Matrix, John Zink]
-
-Mining & Quarrying:
-  Mining Mobile Equipment:
-    gl: [Machinery & Equipment, Mining Equipment, Mobile Equipment]
-    cost: [150000, 6000000]
-    classes:
-      Haul Trucks:
-        items: [off-highway haul truck, rigid frame haul truck, articulated dump truck, mine haul truck]
-        makes: [Caterpillar, Komatsu, Liebherr, Hitachi, Volvo, Bell]
-      Mining Shovels & Draglines:
-        items: [electric rope shovel, hydraulic mining shovel, dragline, mining excavator]
-        makes: [P&H, Bucyrus, Caterpillar, Komatsu, Liebherr, Hitachi]
-      Underground Mining Equipment:
-        items: [continuous miner, longwall shearer, roof bolter, load haul dump, shuttle car, jumbo drill]
-        makes: [Joy, Sandvik, Epiroc, Caterpillar, Fletcher]
-      Blasthole Drills:
-        items: [rotary blasthole drill, track drill, down-the-hole drill, production drill rig]
-        makes: [Epiroc, Sandvik, Atlas Copco, Caterpillar]
-  Mineral Properties:
-    gl: [Mineral Properties, Mine Development, Mining Properties]
-    cost: [200000, 80000000]
-    classes:
-      Mine Sites & Mineral Properties:
-        items: [surface mine, underground mine, quarry, sand and gravel pit, mineral reserves, mine development costs, mine shaft]
-        makes: []
-  Mineral Processing:
-    gl: [Machinery & Equipment, Plant & Machinery, Processing Plant]
-    cost: [50000, 5000000]
-    classes:
-      Crushing & Screening Plants:
-        items: [jaw crusher, cone crusher, impact crusher, vibrating screen, portable crushing plant, feeder]
-        makes: [Metso, Sandvik, Terex, Cedarapids, Telsmith, Powerscreen]
-      Grinding Mills & Concentration:
-        items: [ball mill, SAG mill, flotation cell, thickener, cyclone cluster, magnetic separator]
-        makes: [FLSmidth, Metso Outotec, Weir, Eriez]
-      Aggregate Wash & Stockpile Conveyors:
-        items: [wash plant, sand screw, radial stacker, overland conveyor, log washer, stockpile conveyor]
-        makes: [McLanahan, Superior, KPI-JCI, Trio]
-
-Construction:
-  Earthmoving Equipment:
-    gl: [Machinery & Equipment, Construction Equipment, Heavy Equipment]
-    cost: [30000, 900000]
-    classes:
-      Excavators:
-        items: [hydraulic excavator, mini excavator, track excavator, wheeled excavator, long reach excavator]
-        makes: [Caterpillar, Komatsu, Deere, Volvo, Hitachi, Kubota, Link-Belt]
-      Wheel Loaders & Backhoes:
-        items: [wheel loader, backhoe loader, skid steer loader, compact track loader, track loader]
-        makes: [Caterpillar, Deere, Case, Bobcat, Komatsu, Volvo, JCB]
-      Dozers, Graders & Scrapers:
-        items: [crawler dozer, motor grader, scraper, bulldozer, wheel dozer]
-        makes: [Caterpillar, Komatsu, Deere, Case]
-      Compaction & Paving Equipment:
-        items: [asphalt paver, vibratory roller, compactor, milling machine, asphalt plant, concrete paver]
-        makes: [Caterpillar, Wirtgen, Bomag, Dynapac, Volvo, Gomaco, Astec]
-  Lifting & Site Equipment:
-    gl: [Machinery & Equipment, Construction Equipment, Rental Fleet]
-    cost: [8000, 2500000]
-    classes:
-      Mobile & Tower Cranes:
-        items: [crawler crane, rough terrain crane, all terrain crane, tower crane, boom truck, truck crane]
-        makes: [Manitowoc, Grove, Liebherr, Link-Belt, Tadano, Terex]
-      Aerial Work Platforms:
-        items: [boom lift, scissor lift, telehandler, articulating boom lift, mast lift]
-        makes: [JLG, Genie, Skyjack, Haulotte, Snorkel]
-      Concrete Equipment:
-        items: [concrete batch plant, concrete pump truck, mixer truck, power trowel, concrete forms, shotcrete machine]
-        makes: [Putzmeister, Schwing, McNeilus, Con-E-Co, Symons]
-      Small Site Equipment & Temporary Works:
-        items: [light tower, portable generator, trench box, scaffolding, plate compactor, dewatering pump, job site trailer]
-        makes: [Wacker Neuson, Multiquip, Doosan, Magnum, Godwin]
-
-Power & Utilities:
-  Power Generation:
-    gl: [Plant in Service, Generation Plant, Machinery & Equipment]
-    cost: [100000, 20000000]
-    classes:
-      Combustion Turbine & Combined Cycle Plants:
-        items: [gas turbine generator, combined cycle unit, heat recovery steam generator, simple cycle peaker, combustion turbine]
-        makes: [GE, Siemens, Mitsubishi, Solar Turbines, Alstom]
-      Steam & Nuclear Generating Units:
-        items: [steam turbine generator, coal fired unit, utility boiler, nuclear reactor unit, cooling tower, flue gas scrubber]
-        makes: [GE, Westinghouse, Babcock & Wilcox, Siemens, Alstom]
-      Reciprocating Engine Power Plants:
-        items: [cogeneration engine, landfill gas engine generator, CHP unit, prime power generator plant, diesel generating unit]
-        makes: [Jenbacher, Caterpillar, Wartsila, Cummins, Waukesha]
-      Hydroelectric Generating Units:
-        items: [hydro turbine generator, hydroelectric unit, pumped storage unit, penstock, spillway gate]
-        makes: [Voith, Andritz, GE, Allis-Chalmers]
-      Solar Generation Equipment:
-        items: [solar PV array, solar inverter, single-axis tracker system, solar modules, solar thermal collector field]
-        makes: [First Solar, SMA, Nextracker, SunPower, Canadian Solar, Jinko]
-      Wind Turbines:
-        items: [wind turbine, wind turbine generator, wind farm turbines, turbine tower and blades]
-        makes: [Vestas, GE, Siemens Gamesa, Nordex, Suzlon]
-      Battery Energy Storage Systems:
-        items: [battery energy storage system, lithium-ion battery container, BESS inverter, flywheel storage]
-        makes: [Tesla, Fluence, BYD, LG, Wartsila]
-      Biomass, Geothermal & Other Renewable Units:
-        items: [biomass boiler unit, geothermal turbine, wood waste generating unit, fuel cell power plant, municipal solid waste unit]
-        makes: [Ormat, Bloom Energy, FuelCell Energy]
-  Transmission, Distribution & Water:
-    gl: [Plant in Service, Distribution Plant, Utility Plant]
-    cost: [20000, 5000000]
-    classes:
-      Substation & Transmission Equipment:
-        items: [power transformer, circuit breaker, substation, transmission line, capacitor bank, relay panel]
-        makes: [ABB, Siemens, GE, Hitachi Energy, SEL, Eaton]
-      Distribution Lines & Meters:
-        items: [distribution poles, pad mount transformer, underground cable, smart meters, reclosers, overhead conductors]
-        makes: [Itron, Landis+Gyr, Cooper, Howard, S&C]
-      Water & Wastewater Treatment Equipment:
-        items: [clarifier, aeration blower, UV disinfection system, lift station, belt filter press, chemical feed system]
-        makes: [Evoqua, Xylem, Aerzen, Trojan, Flygt, Ovivo]
-
-Healthcare & Laboratory:
-  Medical Equipment:
-    gl: [Medical Equipment, Machinery & Equipment, Clinical Equipment]
-    cost: [3000, 2500000]
-    classes:
-      Diagnostic Imaging Equipment:
-        items: [MRI scanner, CT scanner, x-ray system, ultrasound, mammography unit, C-arm, PET/CT]
-        makes: [GE Healthcare, Siemens Healthineers, Philips, Canon Medical, Hologic, Fujifilm]
-      Surgical & Operating Room Equipment:
-        items: [surgical table, anesthesia machine, surgical light, electrosurgical unit, surgical robot, endoscopy tower]
-        makes: [Stryker, Steris, Getinge, Intuitive, Olympus, Draeger]
-      Patient Care & Monitoring Equipment:
-        items: [patient monitor, hospital bed, infusion pump, ventilator, defibrillator, stretcher]
-        makes: [Hill-Rom, Stryker, Philips, Baxter, Medtronic, Zoll]
-      Dental & Ophthalmic Equipment:
-        items: [dental chair, dental x-ray, cone beam CT, phoropter, slit lamp, OCT scanner]
-        makes: [A-dec, Dentsply Sirona, Planmeca, Zeiss, Topcon]
-  Laboratory Equipment:
-    gl: [Lab Equipment, Laboratory Equipment, Scientific Equipment]
-    cost: [3000, 900000]
-    classes:
-      Analytical Instruments:
-        items: [HPLC, mass spectrometer, gas chromatograph, spectrophotometer, ICP-MS, NMR spectrometer]
-        makes: [Agilent, Thermo Fisher, Waters, Shimadzu, PerkinElmer, Bruker]
-      General Laboratory Equipment:
-        items: [biosafety cabinet, fume hood, lab freezer, incubator, lab centrifuge, autoclave sterilizer, microscope]
-        makes: [Thermo Scientific, Eppendorf, Labconco, Beckman Coulter, Nikon, Leica]
-      Clinical Analyzers & Sequencers:
-        items: [chemistry analyzer, hematology analyzer, DNA sequencer, PCR system, immunoassay analyzer, flow cytometer]
-        makes: [Roche, Abbott, Illumina, Beckman Coulter, Sysmex, Bio-Rad]
-
-Transportation & Logistics:
-  Aircraft:
-    gl: [Aircraft, Flight Equipment, Transportation Equipment]
-    cost: [200000, 60000000]
-    classes:
-      Fixed-Wing Aircraft:
-        items: [business jet, turboprop aircraft, regional jet, piston aircraft, narrowbody aircraft, single engine airplane]
-        makes: [Cessna, Gulfstream, Bombardier, Beechcraft, Piper, Airbus, Boeing, Embraer]
-      Helicopters & Rotorcraft:
-        items: [helicopter, turbine helicopter, rotorcraft, medevac helicopter]
-        makes: [Bell, Airbus Helicopters, Sikorsky, Robinson, Leonardo]
-      Aircraft Engines & Rotables:
-        items: [turbofan engine, spare engine, auxiliary power unit, landing gear set, propeller, rotable spares]
-        makes: [Pratt & Whitney, GE, Rolls-Royce, CFM, Honeywell]
-      Ground Support Equipment:
-        items: [aircraft tug, ground power unit, belt loader, deicing truck, baggage tractor, air start unit]
-        makes: [TLD, JBT, Tug, Tronair, Global Ground Support]
-  Marine & Rail:
-    gl: [Vessels, Marine Equipment, Rolling Stock, Transportation Equipment]
-    cost: [100000, 30000000]
-    classes:
-      Vessels & Barges:
-        items: [tugboat, deck barge, tank barge, offshore supply vessel, crew boat, towboat, dredge]
-        makes: []
-      Locomotives & Railcars:
-        items: [locomotive, tank car, covered hopper car, boxcar, gondola car, railcar mover]
-        makes: [EMD, GE, Wabtec, Trinity, Greenbrier, Trackmobile]
-      Port & Container Handling Equipment:
-        items: [ship to shore crane, rubber tired gantry crane, reach stacker, container handler, terminal tractor, straddle carrier]
-        makes: [Kalmar, Konecranes, Liebherr, Taylor, Hyster, ZPMC]
-  Fleet & Distribution:
-    gl: [Transportation Equipment, Revenue Equipment, Vehicles]
-    cost: [40000, 600000]
-    classes:
-      Over-the-Road Tractors:
-        items: [sleeper tractor, class 8 tractor, highway tractor, semi truck, tandem axle sleeper]
-        makes: [Freightliner, Peterbilt, Kenworth, Volvo, International, Mack]
-      Buses & Transit Vehicles:
-        items: [transit bus, motor coach, school bus, shuttle bus, paratransit van]
-        makes: [New Flyer, Gillig, Blue Bird, Thomas Built, MCI, Prevost]
-      Rail Transit Vehicles:
-        items: [heavy rail passenger car, light rail vehicle, commuter rail coach, streetcar, subway car, commuter rail locomotive]
-        makes: [Siemens, Kawasaki, Bombardier, Alstom, Stadler, Kinkisharyo]
-      Fuel Tankers & Specialty Trucks:
-        items: [fuel tanker truck, vacuum truck, refuse truck, crane truck, bucket truck, tank trailer]
-        makes: [Heil, McNeilus, Vactor, Altec, Polar, Terex]
-
-Agriculture & Forestry:
-  Farm Equipment:
-    gl: [Machinery & Equipment, Farm Equipment, Farm Machinery]
-    cost: [10000, 900000]
-    classes:
-      Tractors & Combines:
-        items: [row crop tractor, 4WD tractor, combine harvester, utility tractor, cotton picker, forage harvester]
-        makes: [John Deere, Case IH, New Holland, Kubota, AGCO, Claas, Massey Ferguson]
-      Tillage, Planting & Spraying:
-        items: [planter, air seeder, self-propelled sprayer, disc harrow, field cultivator, grain drill]
-        makes: [John Deere, Kinze, Case IH, Great Plains, Hagie, Apache]
-      Irrigation Systems:
-        items: [center pivot irrigation, irrigation pump, drip irrigation system, linear move irrigation, irrigation well]
-        makes: [Valley, Lindsay, Reinke, T-L, Netafim]
-      Grain Storage & Handling:
-        items: [grain bin, grain dryer, grain leg, auger, grain cart, feed mill]
-        makes: [GSI, Sukup, Brock, Westfield, Brent, Meridian]
-      Livestock & Dairy Equipment:
-        items: [milking parlor, robotic milker, feed mixer wagon, manure spreader, bulk milk tank, livestock handling system]
-        makes: [DeLaval, Lely, GEA, BouMatic, Kuhn]
-  Forestry & Logging:
-    gl: [Machinery & Equipment, Logging Equipment, Mobile Equipment]
-    cost: [50000, 900000]
-    classes:
-      Logging Equipment:
-        items: [feller buncher, skidder, log loader, harvester, forwarder, delimber, whole tree chipper]
-        makes: [Tigercat, John Deere, Caterpillar, Ponsse, Komatsu, Morbark]
-
-Printing, Paper & Wood Products:
-  Printing & Converting:
-    gl: [Machinery & Equipment, Printing Equipment, Production Equipment]
-    cost: [15000, 3000000]
-    classes:
-      Printing Presses:
-        items: [sheetfed offset press, web offset press, flexographic press, digital press, wide format printer, label press]
-        makes: [Heidelberg, Komori, Manroland, HP Indigo, Mark Andy, Koenig & Bauer]
-      Bindery & Finishing Equipment:
-        items: [paper cutter, folder, saddle stitcher, perfect binder, die cutter, laminator]
-        makes: [Polar, Muller Martini, Stahl, MBO, Bobst, Duplo]
-      Paper Converting & Corrugating:
-        items: [corrugator, flexo folder gluer, slitter rewinder, sheeter, rotary die cutter, bag machine]
-        makes: [BHS, Fosber, Bobst, Ward, Marquip, Martin]
-  Pulp, Paper & Wood:
-    gl: [Machinery & Equipment, Mill Equipment, Plant & Machinery]
-    cost: [20000, 10000000]
-    classes:
-      Pulp & Paper Mill Equipment:
-        items: [paper machine, digester, recovery boiler, refiner, winder, pulper, tissue machine]
-        makes: [Valmet, Voith, Andritz, Beloit, Kadant]
-      Sawmill & Woodworking Equipment:
-        items: [CNC router, panel saw, edgebander, planer, moulder, head rig, dry kiln, wide belt sander]
-        makes: [Biesse, Homag, SCM, Weinig, USNR, Holz-Her]
-
-Electronics & Semiconductor:
-  Electronics Assembly:
-    gl: [Machinery & Equipment, Production Equipment, Test Equipment]
-    cost: [10000, 1500000]
-    classes:
-      SMT & PCB Assembly Equipment:
-        items: [pick and place machine, reflow oven, screen printer, wave solder machine, selective solder, SMT line]
-        makes: [Fuji, Panasonic, ASM, Juki, Heller, DEK, Yamaha]
-      Electronic Test & Measurement:
-        items: [automated test equipment, oscilloscope, spectrum analyzer, in-circuit tester, network analyzer, burn-in chamber]
-        makes: [Keysight, Tektronix, Teradyne, Rohde & Schwarz, National Instruments, Advantest]
-      Environmental Test Chambers:
-        items: [environmental chamber, thermal shock chamber, vibration table, salt spray chamber, altitude chamber]
-        makes: [Thermotron, Espec, Cincinnati Sub-Zero, Unholtz-Dickie, Weiss]
-  Semiconductor Fabrication:
-    gl: [Machinery & Equipment, Fab Equipment, Production Equipment]
-    cost: [100000, 40000000]
-    classes:
-      Lithography & Etch Tools:
-        items: [stepper, scanner, plasma etcher, mask aligner, track system, lithography tool]
-        makes: [ASML, Nikon, Lam Research, Applied Materials, Tokyo Electron, Canon]
-      Deposition, Implant & Thermal Tools:
-        items: [CVD system, PVD sputter tool, ion implanter, diffusion furnace, ALD system, rapid thermal processor, epitaxial reactor]
-        makes: [Applied Materials, Lam Research, Tokyo Electron, Axcelis, ASM, Kokusai]
-      Wafer Metrology, Probe & Packaging:
-        items: [wafer prober, wire bonder, die bonder, wafer inspection system, CMP tool, dicing saw]
-        makes: [KLA, Kulicke & Soffa, Disco, Tokyo Electron, ASM Pacific, Onto]
-
-Hospitality, Retail & Restaurant:
-  Foodservice & Restaurant:
-    gl: [Restaurant Equipment, Kitchen Equipment, Furniture Fixtures & Equipment]
-    cost: [1500, 120000]
-    classes:
-      Commercial Kitchen Equipment:
-        items: [combi oven, commercial range, fryer, griddle, dish machine, exhaust hood, charbroiler]
-        makes: [Rational, Vulcan, Hobart, Pitco, Garland, Southbend, Blodgett]
-      Commercial Refrigeration:
-        items: [walk-in cooler, reach-in refrigerator, ice machine, display case, undercounter freezer, beverage cooler]
-        makes: ["True", Traulsen, Hoshizaki, Manitowoc, Hussmann, Kolpak]
-  Retail & Lodging:
-    gl: [Furniture Fixtures & Equipment, Store Fixtures, FF&E]
-    cost: [800, 200000]
-    classes:
-      Store Fixtures & Point of Sale:
-        items: [gondola shelving, checkout counter, POS terminal, display fixtures, self-checkout kiosk, shopping carts]
-        makes: [Lozier, Madix, NCR, Toshiba, Verifone]
-      Hotel Furnishings & Guest Room FF&E:
-        items: [guest room furniture package, casegoods, mattresses, lobby furniture, banquet tables and chairs, guest room televisions]
-        makes: []
-      Fitness, Laundry & Amenity Equipment:
-        items: [treadmill, commercial washer extractor, commercial dryer, elliptical, flatwork ironer, strength equipment]
-        makes: [Life Fitness, Precor, Milnor, UniMac, Technogym, Speed Queen]
-      Signage & Security Systems:
-        items: [pylon sign, digital signage, CCTV system, access control system, LED video wall, monument sign]
-        makes: [Daktronics, Axis, Avigilon, Samsung, Honeywell]
-
-Government & Public Safety:
+Government & Public Safety (not in ASA study):
   Public Safety Equipment:
+    basis: extension
     gl: [Equipment, Public Safety Equipment, Machinery & Equipment]
     cost: [500, 150000]
     classes:
@@ -624,6 +934,7 @@ Government & Public Safety:
         items: [fire engine, pumper truck, ambulance, rescue tool, breathing apparatus, fire hose, ladder truck]
         makes: [Pierce, E-One, Rosenbauer, Hurst, Scott, MSA]
   Public Works & Grounds:
+    basis: extension
     gl: [Equipment, Public Works Equipment, Machinery & Equipment]
     cost: [800, 400000]
     classes:
@@ -640,6 +951,7 @@ Government & Public Safety:
         items: [total station, GPS receiver, survey level, nuclear density gauge, concrete test equipment, soil test equipment]
         makes: [Trimble, Leica, Topcon, Troxler, Humboldt]
   Institutional & Recreational:
+    basis: extension
     gl: [Equipment, Furniture & Fixtures, Institutional Equipment]
     cost: [500, 80000]
     classes:
@@ -649,9 +961,47 @@ Government & Public Safety:
       Recreational & Educational Equipment:
         items: [playground equipment, exercise equipment, boat, outboard motor, canoe, classroom equipment, musical instrument, museum exhibit]
         makes: [Mercury, Yamaha, GameTime, Landscape Structures, Tracker]
-
-Transport Infrastructure:
+Hospitality & Lodging (not in ASA study):
+  Retail & Lodging:
+    basis: extension
+    gl: [Furniture Fixtures & Equipment, Store Fixtures, FF&E]
+    cost: [800, 200000]
+    classes:
+      Hotel Furnishings & Guest Room FF&E:
+        items: [guest room furniture package, casegoods, mattresses, lobby furniture, banquet tables and chairs, guest room televisions]
+        makes: []
+      Fitness, Laundry & Amenity Equipment:
+        items: [treadmill, commercial washer extractor, commercial dryer, elliptical, flatwork ironer, strength equipment]
+        makes: [Life Fitness, Precor, Milnor, UniMac, Technogym, Speed Queen]
+Real Estate (not in ASA study):
+  Land & Site:
+    basis: extension
+    gl: [Land, Land Improvements]
+    cost: [20000, 20000000]
+    classes:
+      Land:
+        items: [land, land parcel, acreage, land acquisition, right of way]
+        makes: []
+      Site Improvements:
+        items: [parking lot paving, site grading, storm drainage, fencing, landscaping, retention pond, site lighting]
+        makes: []
+  Buildings:
+    basis: extension
+    gl: [Buildings, Building Improvements, Leasehold Improvements]
+    cost: [20000, 60000000]
+    classes:
+      Buildings & Structures:
+        items: [office building, warehouse building, building addition, manufacturing building, storage building, parking structure]
+        makes: []
+      Building Systems & Improvements:
+        items: [roof replacement, HVAC rooftop unit replacement, elevator, fire sprinkler system, building lighting retrofit, restroom remodel, new flooring]
+        makes: [Trane, Carrier, Otis, Schindler, Lennox]
+      Leasehold & Tenant Improvements:
+        items: [leasehold improvements, tenant build-out, office renovation, interior build-out, tenant improvement allowance]
+        makes: []
+Transport Infrastructure (not in ASA study):
   Airports:
+    basis: extension
     gl: [Airfield, Infrastructure, Terminal Equipment, Buildings & Improvements]
     cost: [50000, 80000000]
     classes:
@@ -662,6 +1012,7 @@ Transport Infrastructure:
         items: [passenger boarding bridge, baggage handling system, baggage carousel, security screening equipment, flight information display system]
         makes: [JBT, Thyssenkrupp, Vanderlande, Daifuku, Smiths Detection]
   Roads, Bridges & Tolling:
+    basis: extension
     gl: [Infrastructure, Roadway, Toll Equipment]
     cost: [50000, 200000000]
     classes:
@@ -675,37 +1026,10 @@ Transport Infrastructure:
         items: [toll gantry, electronic toll collection system, toll plaza equipment, toll booth, license plate camera system, traffic management system]
         makes: [Kapsch, TransCore, Conduent, Neology]
   Rail & Transit Infrastructure:
+    basis: extension
     gl: [Infrastructure, Track & Guideway, Buildings & Improvements]
     cost: [50000, 200000000]
     classes:
-      Track, Guideway & Signals:
-        items: [track, rail and ties, overhead catenary system, signal system, traction power substation, grade crossing]
-        makes: []
       Transit Stations & Maintenance Facilities:
         items: [passenger station, bus maintenance garage, rail yard and shop, park and ride lot, transit center, bus shelter]
-        makes: []
-
-Real Estate:
-  Land & Site:
-    gl: [Land, Land Improvements]
-    cost: [20000, 20000000]
-    classes:
-      Land:
-        items: [land, land parcel, acreage, land acquisition, right of way]
-        makes: []
-      Site Improvements:
-        items: [parking lot paving, site grading, storm drainage, fencing, landscaping, retention pond, site lighting]
-        makes: []
-  Buildings:
-    gl: [Buildings, Building Improvements, Leasehold Improvements]
-    cost: [20000, 60000000]
-    classes:
-      Buildings & Structures:
-        items: [office building, warehouse building, building addition, manufacturing building, storage building, parking structure]
-        makes: []
-      Building Systems & Improvements:
-        items: [roof replacement, HVAC rooftop unit replacement, elevator, fire sprinkler system, building lighting retrofit, restroom remodel, new flooring]
-        makes: [Trane, Carrier, Otis, Schindler, Lennox]
-      Leasehold & Tenant Improvements:
-        items: [leasehold improvements, tenant build-out, office renovation, interior build-out, tenant improvement allowance]
         makes: []

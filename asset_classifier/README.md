@@ -8,7 +8,7 @@ valuation.
 
 | File | Purpose |
 |---|---|
-| `taxonomy.yaml` | Three levels: sector, major category, asset class. Edit this first. |
+| `taxonomy.yaml` | Three levels: sector, asset classification, asset class. Edit this first. |
 | `generate_synthetic.py` | Writes labelled, register-style rows from the taxonomy. |
 | `jev_label.py` | Labels rows with Jev, or audits synthetic rows against it. |
 | `fetch_indiana.py` | Samples real rows from Indiana's public state asset register. |
@@ -25,11 +25,32 @@ valuation.
 
 ## Taxonomy status
 
-The taxonomy is a draft. It is organised the way ASA's Machinery & Technical
-Specialties material is (industry, then asset type), but it was written from
-general knowledge and has not been checked against ASA's licensed tables.
-Review it against the ASA Estimated Normal Useful Life Study, then attach a
-normal useful life and a cost index series to each class.
+Version 2. Three levels: sector, asset classification, asset class.
+
+- The sector and asset classification headings follow the ASA Machinery &
+  Technical Specialties Committee "Estimated Normal Useful Life Study" (2024):
+  all 36 ASA sectors are present.
+- Seven further sectors, marked "(not in ASA study)", cover assets the study
+  has no place for: aircraft, real estate, transport infrastructure, government
+  and public safety, electronics and semiconductor, hospitality, and general
+  plant support. Extension classifications inside ASA sectors are `basis: extension`.
+- The asset classes and their placement under ASA headings are this project's
+  own judgment and have not been reviewed by an appraiser.
+- No useful lives are attached yet. The ASA study's life figures and asset
+  lists are copyright ASA and are deliberately not stored in this repository.
+
+## Classification sources
+
+| Source | Use | Status |
+|---|---|---|
+| ASA Estimated Normal Useful Life Study 2024 | Sector and classification headings; normal useful lives | Headings used; lives not stored (copyright) |
+| US state personal property manuals (NC, CO, NV, NM, UT, KS, AR) | Economic lives by industry, percent-good and cost index tables | Identified, not yet loaded |
+| Louisiana Tax Commission rules (Title 61 Part V) | Oil and gas wells, drilling rigs, pipelines: cost and life tables | Identified, not yet loaded |
+| Kansas Oil and Gas Appraisal Guide | Lease and well equipment schedules | Identified, not yet loaded |
+| FERC Uniform System of Accounts (18 CFR 101, 201, 352) | Plant account lists for electric, gas and oil pipeline utilities | Identified, not yet loaded |
+| New Zealand IRD general depreciation rates (IR265) | Useful lives by industry and asset category | Identified, not yet loaded |
+| IRS Publication 946, Tables B-1 and B-2 | Tax class lives, reference only | Downloaded, not yet parsed |
+| ATO effective life tables | Tax effective lives, reference only | Site refused download |
 
 ## Row format
 

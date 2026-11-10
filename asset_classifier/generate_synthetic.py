@@ -78,6 +78,7 @@ def load_taxonomy(path=HERE / "taxonomy.yaml"):
                     "sector": sector, "major_category": cat, "asset_class": cls,
                     "items": spec["items"], "makes": spec.get("makes") or [],
                     "gl": body["gl"], "cost": body["cost"],
+                    "basis": body.get("basis", "extension"),
                 })
     names = [c["asset_class"] for c in classes]
     dupes = {n for n in names if names.count(n) > 1}

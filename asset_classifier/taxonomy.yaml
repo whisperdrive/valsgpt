@@ -284,6 +284,9 @@ Oil & Gas:
       Wellhead & Production Equipment:
         items: [pumping unit, wellhead, separator, heater treater, artificial lift system, tank battery]
         makes: [Lufkin, Cameron, Weatherford, FMC, Schlumberger]
+      Offshore Platforms & Floating Production:
+        items: [fixed leg platform, caisson, well protector platform, spar, tension leg platform, FPSO, semi-submersible production unit, subsea manifold]
+        makes: []
   Midstream & Downstream:
     gl: [Machinery & Equipment, Pipeline Equipment, Plant & Machinery]
     cost: [50000, 10000000]
@@ -315,6 +318,13 @@ Mining & Quarrying:
       Blasthole Drills:
         items: [rotary blasthole drill, track drill, down-the-hole drill, production drill rig]
         makes: [Epiroc, Sandvik, Atlas Copco, Caterpillar]
+  Mineral Properties:
+    gl: [Mineral Properties, Mine Development, Mining Properties]
+    cost: [200000, 80000000]
+    classes:
+      Mine Sites & Mineral Properties:
+        items: [surface mine, underground mine, quarry, sand and gravel pit, mineral reserves, mine development costs, mine shaft]
+        makes: []
   Mineral Processing:
     gl: [Machinery & Equipment, Plant & Machinery, Processing Plant]
     cost: [50000, 5000000]

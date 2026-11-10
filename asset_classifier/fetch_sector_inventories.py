@@ -5,6 +5,10 @@ Sources (all US federal, public):
   * EIA Form 860 (2025)               - www.eia.gov/electricity/data/eia860/
   * FTA National Transit Database     - data.transportation.gov (revenue vehicles,
                                         service vehicles, facilities)
+  * BSEE platform structures          - www.data.bsee.gov/Platform/Files/PlatStrucRawData.zip
+  * EIA refinery capacity (2026)      - www.eia.gov/petroleum/refinerycapacity/refcap26.xlsx
+  * MSHA mines data set               - arlweb.msha.gov/OpenGovernmentData/DataSets/Mines.zip
+  * Indiana state asset register      - hub.mph.in.gov (land, building and improvement rows)
 
 These are inventories, not accounting registers: one clean record per aircraft,
 generator, vehicle or facility. The label comes from the source's own type
@@ -19,7 +23,8 @@ Usage:
 
 `--raw` must contain the unzipped FAA files (MASTER.txt, ACFTREF.txt,
 ENGINE.txt), the unzipped EIA-860 workbooks, and the three NTD CSV exports
-named ifzt-j53d.csv, 5en4-yiki.csv and mbm2-ck6q.csv.
+named ifzt-j53d.csv, 5en4-yiki.csv and mbm2-ck6q.csv, plus
+mv_platstruc_structures.txt, refcap26.xlsx, Mines.txt and Indiana's assets.csv.
 """
 import argparse
 import csv
@@ -232,6 +237,88 @@ def ntd_rows(raw, rng, per_group):
             "Transit Stations & Maintenance Facilities", "FTA National Transit Database"
 
 
+BSEE_STRUCTURE = {"CAIS": "caisson", "FIXED": "fixed leg platform", "WP": "well protector platform",
+                  "SPAR": "spar platform", "TLP": "tension leg platform", "MTLP": "mini tension leg platform",
+                  "SEMI": "semi-submersible floating production unit", "FPSO": "FPSO",
+                  "CT": "compliant tower", "MOPU": "mobile offshore production unit",
+                  "SSMNF": "subsea manifold", "SSTMP": "subsea template", "UCOMP": "underwater completion"}
+REFINERY_UNIT = {
+    "CAT CRACKING: FRESH FEED": "fluid catalytic cracking unit", "VACUUM DISTILLATION": "vacuum distillation unit",
+    "CAT REFORMING: LOW PRESSURE": "catalytic reformer", "CAT REFORMING: HIGH PRESSURE": "catalytic reformer",
+    "DESULFURIZATION, NAPHTHA/REFORMER FEED": "naphtha hydrotreater", "DESULFURIZATION, DIESEL FUEL": "diesel hydrotreater",
+    "DESULFURIZATION, GASOLINE": "gasoline desulfurization unit", "DESULFURIZATION, KEROSENE AND JET": "kerosene hydrotreater",
+    "DESULFURIZATION, HEAVY GAS OIL": "gas oil hydrotreater", "THERM CRACKING, DELAYED COKING": "delayed coker",
+    "THERM CRACKING, FLUID COKING": "fluid coker", "CAT HYDROCRACKING, GAS OIL": "hydrocracker",
+    "CAT HYDROCRACKING, DISTILLATE": "distillate hydrocracker", "ALKYLATES": "alkylation unit",
+    "ISOMERIZATION (ISOPENTANE/ISOHEXANE)": "isomerization unit", "ISOMERIZATION (ISOBUTANE)": "butane isomerization unit",
+    "SULFUR (SHORT TONS/DAY)": "sulfur recovery unit", "HYDROGEN (MMCFD)": "hydrogen plant",
+    "AROMATICS": "aromatics unit", "LUBRICANTS": "lube oil plant", "FUELS SOLVENT DEASPHALTING": "solvent deasphalting unit",
+    "ASPHALT & ROAD OIL": "asphalt plant", "TOTAL OPERABLE CAPACITY": "crude distillation unit",
+}
+INDIANA_REAL_ESTATE = {"LAND": "Land", "Buildings": "Buildings & Structures",
+                       "Improvements to Buildings": "Building Systems & Improvements",
+                       "Improvements to Land": "Site Improvements"}
+
+
+def bsee_rows(raw, rng, per_group):
+    with open(raw / "mv_platstruc_structures.txt", newline="", encoding="latin-1") as fh:
+        structures = [r for r in csv.DictReader(fh) if r["STRUC_TYPE_CODE"] in BSEE_STRUCTURE]
+    for r in stratified(structures, lambda r: r["STRUC_TYPE_CODE"], per_group * 2, rng):
+        kind = BSEE_STRUCTURE[r["STRUC_TYPE_CODE"]]
+        where = f"{r['AREA_CODE'].strip()} {r['BLOCK_NUMBER'].strip()}"
+        depth = f"{r['WATER_DEPTH']} ft water depth" if r["WATER_DEPTH"] and rng.random() < 0.5 else ""
+        year = r["INSTALL_DATE"][-4:] if r["INSTALL_DATE"] and rng.random() < 0.5 else ""
+        layout = rng.choice(["{w} platform {n} - {k} {d}", "{k} {w} {n} {y}", "offshore {k} {w} #{n} {d}",
+                             "{w} {n} {k}", "{y} {k} - block {w} structure {n}"])
+        yield (layout.format(w=where, n=r["STRUCTURE_NAME"].strip(), k=kind, d=depth, y=year),
+               "Offshore Platforms & Floating Production", "BSEE platform structures")
+
+
+def refinery_rows(raw, rng, per_group):
+    ws = openpyxl.load_workbook(raw / "refcap26.xlsx", read_only=True).worksheets[0]
+    rows = ws.iter_rows(values_only=True)
+    header = list(next(rows))
+    units = [dict(zip(header, r)) for r in rows]
+    units = [u for u in units if u["PRODUCT"] in REFINERY_UNIT and u["QUANTITY"]
+             and "Next Year" not in u["SUPPLY"] and "calendar day" not in u["SUPPLY"]]
+    for u in stratified(units, lambda u: u["PRODUCT"], per_group, rng):
+        kind = REFINERY_UNIT[u["PRODUCT"]]
+        unit_of = "TPD" if u["PRODUCT"].startswith("SULFUR") else "MMCFD" if u["PRODUCT"].startswith("HYDROGEN") else "BPSD"
+        cap = f"{u['QUANTITY']:,} {unit_of}" if rng.random() < 0.7 else ""
+        layout = rng.choice(["{s} refinery - {k} {c}", "{k} {c} {s}", "{s} {k}", "{k} - {s} refinery {c}"])
+        yield (layout.format(s=u["SITE"].title(), k=kind, c=cap),
+               "Refining & Gas Processing Units", "EIA refinery capacity")
+
+
+def msha_rows(raw, rng, per_group):
+    with open(raw / "Mines.txt", newline="", encoding="latin-1") as fh:
+        mines = [m for m in csv.DictReader(fh, delimiter="|")
+                 if m["CURRENT_MINE_STATUS"] in ("Active", "Intermittent")
+                 and m["CURRENT_MINE_TYPE"] in ("Surface", "Underground") and m["PRIMARY_SIC"]]
+    for m in stratified(mines, lambda m: (m["CURRENT_MINE_TYPE"], m["PRIMARY_CANVASS"]), per_group * 3, rng):
+        commodity = m["PRIMARY_SIC"].replace(" NEC", "").replace("Crushed, Broken ", "").lower()
+        kind = m["CURRENT_MINE_TYPE"].lower()
+        word = rng.choice(["mine", "mine property", "mineral reserves", "mine development", "quarry" if kind == "surface" else "mine"])
+        layout = rng.choice(["{n} - {k} {c} {w}", "{n} {c} {w}", "{n}", "{c} {w} - {n}", "{k} {c} {w} {n}"])
+        yield (layout.format(n=m["CURRENT_MINE_NAME"], k=kind, c=commodity, w=word),
+               "Mine Sites & Mineral Properties", "MSHA mines data set")
+
+
+def indiana_real_estate_rows(raw, rng, per_group, exclude):
+    """Real register descriptions; the label is the state's own ledger category."""
+    seen, rows = set(), []
+    with open(raw / "assets.csv", newline="", encoding="utf-8", errors="replace") as fh:
+        for r in csv.DictReader(fh):
+            desc = r["Asset Description"].strip()
+            if r["Category Description"] in INDIANA_REAL_ESTATE and desc and desc.upper() not in seen \
+                    and desc.upper() not in exclude:
+                seen.add(desc.upper())
+                rows.append(r)
+    for r in stratified(rows, lambda r: r["Category Description"], per_group * 10, rng):
+        yield r["Asset Description"].strip(), INDIANA_REAL_ESTATE[r["Category Description"]], "Indiana state asset register"
+
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--raw", required=True, help="directory holding the unpacked source files")
@@ -243,10 +330,19 @@ def main():
     raw, rng = Path(args.raw), random.Random(args.seed)
     by_class = {c["asset_class"]: c for c in load_taxonomy()}
     rows, seen = [], set()
-    for maker in (faa_rows, eia_rows, ntd_rows):
+    # Indiana rows already sampled for Jev labelling and the hold-out must not reappear here
+    exclude = set()
+    sample = HERE / "data" / "indiana_sample.csv"
+    if sample.exists():
+        with open(sample, newline="") as fh:
+            exclude = {r["state"].split(" | ")[0].removeprefix("description: ").upper() for r in csv.DictReader(fh)}
+    makers = [faa_rows, eia_rows, ntd_rows, bsee_rows, refinery_rows, msha_rows,
+              lambda *a: indiana_real_estate_rows(*a, exclude)]
+    for maker in makers:
         for desc, cls, source in maker(raw, rng, args.per_group):
             spec = by_class[cls]
-            desc = style(desc, rng)
+            if source != "Indiana state asset register":  # real register text is kept verbatim
+                desc = style(desc, rng)
             if desc in seen:
                 continue
             seen.add(desc)

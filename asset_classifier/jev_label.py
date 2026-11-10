@@ -59,7 +59,13 @@ def build_questions(classes):
 def ask(session, key, state, questions, model, retries=6):
     body = {"model": model, "state": state, "questions": questions}
     for attempt in range(retries):
-        resp = session.post(URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=60)
+        try:
+            resp = session.post(URL, json=body, headers={"Authorization": f"Bearer {key}"}, timeout=60)
+        except requests.exceptions.ConnectionError:
+            if attempt == retries - 1:
+                raise
+            time.sleep(2 ** attempt)
+            continue
         if resp.status_code in (429, 529, 500, 502, 503):
             time.sleep(float(resp.headers.get("retry-after", 2 ** attempt)))
             continue
@@ -118,6 +124,7 @@ def main():
             "jev_class_confidence": cls["confidence"],
             "jev_class_probability": cls["probabilities"][cls["choice"]],
             **{f"intended_{k}": row[k] for k in ("in_scope", "sector", "major_category", "asset_class") if k in row},
+            **{k: v for k, v in row.items() if k.startswith("ref_")},
         }, answer["usage"]["input_tokens"]
 
     results = []

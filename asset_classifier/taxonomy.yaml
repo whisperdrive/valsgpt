@@ -571,3 +571,50 @@ Hospitality, Retail & Restaurant:
       Signage & Security Systems:
         items: [pylon sign, digital signage, CCTV system, access control system, LED video wall, monument sign]
         makes: [Daktronics, Axis, Avigilon, Samsung, Honeywell]
+
+Government & Public Safety:
+  Public Safety Equipment:
+    gl: [Equipment, Public Safety Equipment, Machinery & Equipment]
+    cost: [500, 150000]
+    classes:
+      Firearms & Protective Equipment:
+        items: [handgun, rifle, shotgun, body armor vest, ballistic shield, riot helmet, taser]
+        makes: [Glock, Sig Sauer, Smith & Wesson, Remington, Safariland, Axon, Colt]
+      Two-Way Radio & Dispatch Equipment:
+        items: [portable radio, mobile radio, radio repeater, dispatch console, base station radio, radio tower equipment]
+        makes: [Motorola, Kenwood, Harris, EF Johnson, Zetron]
+      Surveillance, Camera & Detection Equipment:
+        items: [body camera, in-car camera system, digital camera, thermal imager, radar speed gun, x-ray scanner, metal detector walk-through, breath alcohol tester]
+        makes: [Axon, WatchGuard, Nikon, Canon, FLIR, Stalker, Kustom Signals, Garrett]
+      Emergency Vehicle Equipment:
+        items: [light bar, siren, prisoner partition, mobile data terminal, push bumper, emergency lights]
+        makes: [Whelen, Federal Signal, Setina, Panasonic, Code 3]
+      Fire & Rescue Apparatus:
+        items: [fire engine, pumper truck, ambulance, rescue tool, breathing apparatus, fire hose, ladder truck]
+        makes: [Pierce, E-One, Rosenbauer, Hurst, Scott, MSA]
+  Public Works & Grounds:
+    gl: [Equipment, Public Works Equipment, Machinery & Equipment]
+    cost: [800, 400000]
+    classes:
+      Snow & Road Maintenance Equipment:
+        items: [snow plow, salt spreader, street sweeper, pothole patcher, line striper, brine tank, crack sealer]
+        makes: [Western, Boss, Henderson, Elgin, Swenson, Monroe]
+      Mowers & Grounds Equipment:
+        items: [riding mower, zero turn mower, brush cutter, chain saw, leaf blower, utility vehicle, wood chipper]
+        makes: [John Deere, Toro, Kubota, Stihl, Exmark, Scag, Vermeer]
+      Traffic Control Equipment:
+        items: [traffic signal, message board, arrow board, traffic counter, sign truck attenuator, signal controller]
+        makes: [Econolite, Wanco, Ver-Mac, Siemens, TrafFix]
+      Survey & Field Test Equipment:
+        items: [total station, GPS receiver, survey level, nuclear density gauge, concrete test equipment, soil test equipment]
+        makes: [Trimble, Leica, Topcon, Troxler, Humboldt]
+  Institutional & Recreational:
+    gl: [Equipment, Furniture & Fixtures, Institutional Equipment]
+    cost: [500, 80000]
+    classes:
+      Institutional Furnishings & Appliances:
+        items: [bunk bed, dormitory furniture, refrigerator, washing machine, television, mattress, household chair]
+        makes: [Whirlpool, GE, Norix, Samsung, Maytag]
+      Recreational & Educational Equipment:
+        items: [playground equipment, exercise equipment, boat, outboard motor, canoe, classroom equipment, musical instrument, museum exhibit]
+        makes: [Mercury, Yamaha, GameTime, Landscape Structures, Tracker]

@@ -1,4 +1,5 @@
 
+import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -7,7 +8,29 @@ from email import encoders
 from app import app
 from flask import render_template, request, redirect	
 from waitress import serve
-	
+
+SMTP_SENDER_EMAIL_VAR = "SMTP_SENDER_EMAIL"
+SMTP_SENDER_PASSWORD_VAR = "SMTP_SENDER_PASSWORD"
+
+class MissingSMTPCredentialsError(RuntimeError):
+	pass
+
+def get_smtp_credentials():
+	"""Read the sender address and password from the environment."""
+	sender_email = os.environ.get(SMTP_SENDER_EMAIL_VAR, "").strip()
+	sender_password = os.environ.get(SMTP_SENDER_PASSWORD_VAR, "").strip()
+	missing = [name for name, value in (
+		(SMTP_SENDER_EMAIL_VAR, sender_email),
+		(SMTP_SENDER_PASSWORD_VAR, sender_password),
+	) if not value]
+	if missing:
+		raise MissingSMTPCredentialsError(
+			"Cannot send email: missing required environment variable(s): "
+			+ ", ".join(missing)
+			+ ". See README.md for setup instructions."
+		)
+	return sender_email, sender_password
+
 @app.route('/')
 def main():
 	return render_template("userInput.html")
@@ -39,9 +62,9 @@ def submit_data():
 				# Write the data to the file
 				file.write(_stringForData)
 
-			# Email and password (use an App Password if you have 2FA enabled)
-			sender_email = "valsgpt@gmail.com" # your actual email
-			sender_password = "unttfccwpplkxwaq" # your actual pass
+			# Sender address and password come from the environment
+			# (use an App Password if you have 2FA enabled)
+			sender_email, sender_password = get_smtp_credentials()
 			recipient_email = _email
 
 			# Create the message
@@ -71,6 +94,10 @@ def submit_data():
 			print(f"Data has been written to '{file_path}'")
 		else:
 			return 'Error while submiting the input information'
+
+	except MissingSMTPCredentialsError as e:
+		print(e)
+		return str(e), 500
 
 	except Exception as e:
 		print(e)

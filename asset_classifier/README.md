@@ -13,6 +13,8 @@ valuation.
 | `jev_label.py` | Labels rows with Jev, or audits synthetic rows against it. |
 | `fetch_indiana.py` | Samples real rows from Indiana's public state asset register. |
 | `fetch_sector_inventories.py` | Builds labelled rows from public inventories: FAA aircraft, EIA power plants and refineries, FTA transit, BSEE offshore platforms, MSHA mines, and Indiana land and building rows. |
+| `parse_asa_nul.py` | Reads life bands from a licensed PDF of the ASA study into `local/` (git-ignored). |
+| `attach_lives.py` | Matches each asset class to an ASA life band; writes `local/class_lives.csv` (git-ignored). |
 | `build_training_set.py` | Merges synthetic and Jev-labelled real rows; writes the review files. |
 | `data/synthetic.csv` | Generated rows, with train / validation / test split. |
 | `data/jev_audit.csv` | Jev's blind labels for a sample of the synthetic set. |
@@ -36,14 +38,18 @@ Version 2. Three levels: sector, asset classification, asset class.
   plant support. Extension classifications inside ASA sectors are `basis: extension`.
 - The asset classes and their placement under ASA headings are this project's
   own judgment and have not been reviewed by an appraiser.
-- No useful lives are attached yet. The ASA study's life figures and asset
-  lists are copyright ASA and are deliberately not stored in this repository.
+- ASA normal useful lives are attached by `attach_lives.py`, but only in
+  `local/class_lives.csv`. The study's life figures and asset lists are
+  copyright ASA and this repository is public, so they are not committed.
+  To recreate them: `python parse_asa_nul.py <your ASA PDF>` then
+  `python attach_lives.py`.
+- The match from class to life band is a word-overlap guess and needs review.
 
 ## Classification sources
 
 | Source | Use | Status |
 |---|---|---|
-| ASA Estimated Normal Useful Life Study 2024 | Sector and classification headings; normal useful lives | Headings used; lives not stored (copyright) |
+| ASA Estimated Normal Useful Life Study 2024 | Sector and classification headings; normal useful lives | Headings used; lives attached locally, not committed |
 | US state personal property manuals (NC, CO, NV, NM, UT, KS, AR) | Economic lives by industry, percent-good and cost index tables | Identified, not yet loaded |
 | Louisiana Tax Commission rules (Title 61 Part V) | Oil and gas wells, drilling rigs, pipelines: cost and life tables | Identified, not yet loaded |
 | Kansas Oil and Gas Appraisal Guide | Lease and well equipment schedules | Identified, not yet loaded |
